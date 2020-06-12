@@ -1,0 +1,52 @@
+<div class="layout-breadcrumb">
+  <ul>
+    <li>
+      <a routerLink="">
+        <i class="material-icons">home</i>
+      </a>
+    </li>
+    <li>/</li>
+    <ng-template [ngForOf]="items" let-item let-last="last" ngFor>
+      <li>
+        <a *ngIf="item.routerLink" [routerLink]="item.routerLink">{{
+          item.label
+          }}</a>
+
+        <ng-container *ngIf="!item.routerLink">{{ item.label }}</ng-container>
+      </li>
+      <li *ngIf="!last">/</li>
+    </ng-template>
+  </ul>
+  <div class="layout-breadcrumb-options">
+    <a
+      (click)="
+        highContrastEnabled ? disableHighContrast() : enableHighContrast()
+      "
+      [ngStyle]="{ cursor: 'pointer' }"
+      title="{{
+        highContrastEnabled
+          ? 'Desabilitar alto contraste'
+          : 'Habilitar alto contraste'
+      }}"
+    >
+      <i class="material-icons">{{
+        highContrastEnabled ? "visibility_off" : "visibility"
+        }}</i>
+    </a>
+    <a
+      (click)="increaseFontSize()"
+      [ngStyle]="{ cursor: 'pointer' }"
+      title="Aumentar fonte"
+    >
+      <i class="material-icons">exposure_plus_1</i>
+    </a>
+    <a
+      (click)="decreaseFontSize()"
+      [ngStyle]="{ cursor: 'pointer' }"
+      title="Diminuir fonte"
+    >
+      <i class="material-icons">exposure_neg_1</i>
+    </a>
+  </div>
+  <ng-content></ng-content>
+</div>

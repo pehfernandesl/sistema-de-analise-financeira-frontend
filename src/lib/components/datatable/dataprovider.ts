@@ -1,0 +1,18 @@
+/**
+ * Interface DataProvider
+ * @interface
+ */
+export interface DataProvider {
+  /**
+   * load method
+   * @param {any} query
+   * @returns void
+   */
+  load(query ?: any): void;
+
+  /**
+   * reset method
+   * @returns void
+   */
+  reset(): void;
+}

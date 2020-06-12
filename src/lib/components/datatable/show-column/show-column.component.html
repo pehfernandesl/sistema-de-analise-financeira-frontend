@@ -1,0 +1,19 @@
+<div class="ui-g-12 ui-g-nopad">
+  <div class="ui-g-3 ui-md-offset-6">
+    <div class="text-right">Visibilidade das Colunas:</div>
+  </div>
+  <div class="ui-g-3">
+    <p-multiSelect
+      (onChange)="mostrarColunas($event)"
+      [(ngModel)]="values"
+      [displaySelectedLabel]="false"
+      [ngModelOptions]="{ standalone: true }"
+      [optionLabel]="'header'"
+      [options]="options"
+      [style]="{ width: '100%' }"
+      class="column"
+      defaultLabel="Selecione as colunas a serem exibidas"
+    >
+    </p-multiSelect>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<span #notification form-notification class="md-inputfield" [name]="name" [form]="form">
+    <p-calendar #input
+        [ngClass]="{ 'ng-invalid ng-dirty': notification.message }"
+        [name]="name"
+        [formControl]="formControl"
+        [locale]="ptBR"
+        [dateFormat]="ptBR.dateFormat"
+        (onBlur)="onBlurEvent($event)"
+        (onFocus)="onFocusEvent($event)"
+        (onSelect)="onSelectEvent($event)">
+    </p-calendar>
+    <label [for]="name" [innerHTML]="label"></label>
+    <nValidationMessage [control]="formControl" *ngIf="!notification.message"></nValidationMessage>
+    <ng-content></ng-content>
+</span>

@@ -1,0 +1,125 @@
+<p-blockUI [blocked]="blockContent">
+  <div class="center-spinner">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</p-blockUI>
+<div [ngClass]="verticalButtons ? 'ui-g-11' : 'ui-g-12'">
+  <safi-show-column (updateVisibleColumns)="updateVisibleColumns($event)" *ngIf="showVisibleColumnsControl"
+                     [columns]="columns"></safi-show-column>
+</div>
+<div [ngClass]="verticalButtons ? 'ui-g-11' : 'ui-g-12'">
+  <p-table
+    #datatable
+    (onRowSelect)="onSelectChange($event)"
+    (onRowUnselect)="onSelectChange($event)"
+    [(selection)]="selectedRow"
+    [paginator]="true"
+    [responsive]="true"
+    [rows]="rows"
+    [scrollHeight]="scrollHeight"
+    [scrollable]="enableScroll"
+    [selectionMode]="selectionMode"
+    [value]="value">
+    <ng-template let-columns pTemplate="header">
+      <div *ngIf="!verticalButtons" class="ui-g">
+        <div *ngIf="showHorizontalButtonsHeader" class="ui-g-4 ui-sm-12">
+          <span class="horizontal-buttons-header">{{ horizontalButtonsHeader }}</span>
+        </div>
+        <div [ngClass]="{
+                    'horizontal-buttons': true,
+                    'ui-sm-12': true,
+                    'ui-g-8': showHorizontalButtonsHeader,
+                    'ui-g-12': !showHorizontalButtonsHeader}">
+          <ng-container *ngTemplateOutlet="defaultButtons"></ng-container>
+          <ng-content select="horizontalButtons"></ng-content>
+        </div>
+      </div>
+      <tr>
+        <th *ngFor="let col of columns"
+            [ngStyle]="{'display': visibleColumns[col.field]}"
+            [pSortableColumn]="col.sortable ? col.field : null">
+          {{col.header}}
+          <p-sortIcon *ngIf="col.sortable" [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+      <tr *ngIf="filterOnColumn">
+        <th *ngFor="let col of columns" [ngStyle]="{'display': visibleColumns[col.field]}">
+          <safi-filter-column
+            (outputEvent)="filterColumn(col.field, $event)"
+            [customFilterOptions]="customFilterOptions"
+            [field]="col.field"
+            [filterType]="col.filterType"
+            [listaOriginal]="filterSelectOptions"
+            [lista]="filterSelectOptions"
+            [tableType]="type"
+            [updateFiltro]="updateFilterColumn">
+          </safi-filter-column>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template let-columns="columns" let-rowData pTemplate="body">
+      <tr [pContextMenuRow]="rowData" [pSelectableRow]="rowData">
+        <td *ngFor="let col of columns" [ngStyle]="{'display': visibleColumns[col.field]}">
+                    <span *ngIf="!col.bodyTemplate" [innerHTML]="rowData[col.field]">
+                    </span>
+          <ng-container
+            *ngIf="col.bodyTemplate"
+            [ngTemplateOutletContext]="{ rowData: rowData, col: col }"
+            [ngTemplateOutlet]="col.bodyTemplate">
+          </ng-container>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template *ngIf="emptyMessage">
+      {{ emptyMessage }}
+    </ng-template>
+    <p-footer *ngIf="showPaginationFooter && totalRecords() > 0">
+      {{ paginationFooterText(footerMsg) }}
+    </p-footer>
+
+  </p-table>
+</div>
+<div *ngIf="verticalButtons"
+     [style.position]="enableButtonsScroll ? 'sticky' : ''"
+     [style.top]="enableButtonsScroll ? '15%' : ''"
+     class="ui-g-1 ui-g-nopad">
+  <ng-container *ngTemplateOutlet="defaultButtons"></ng-container>
+  <ng-content></ng-content>
+</div>
+
+<ng-template #defaultButtons>
+  <safi-datatable-button (click)="onClick('edit', $event)"
+                         *ngIf="!disableEdit && checkRolesToButton('rulesToShowView') && checkRolesToButton('rulesToHideView')"
+                         [bTooltip]="selectedRow != null ? 'Editar' : 'Escolha um registro para editar.' "
+                         [class.horizontal-button]="!verticalButtons"
+                         [disabled]="selectedRow == null"
+                         class="ui-button-success"
+                         icon="edit">
+  </safi-datatable-button>
+
+  <safi-datatable-button (click)="onClick('view', $event)"
+                         *ngIf="!disableView && checkRolesToButton('rulesToShowEdit') && checkRolesToButton('rulesToHideEdit')"
+                         [bTooltip]="selectedRow != null ? 'Visualizar' : 'Escolha um registro para visualizar.'"
+                         [class.horizontal-button]="!verticalButtons"
+                         [disabled]="selectedRow == null"
+                         icon="remove-red-eye">
+  </safi-datatable-button>
+
+  <safi-datatable-button (click)="onClick('delete', $event)"
+                         *ngIf="!disableDelete && checkRolesToButton('rulesToShowDelete') && checkRolesToButton('rulesToHideDelete')"
+                         [bTooltip]="selectedRow != null ? 'Excluir' : 'Escolha um registro para excluir.'"
+                         [class.horizontal-button]="!verticalButtons"
+                         [disabled]="selectedRow == null"
+                         class="ui-button-danger"
+                         icon="delete">
+  </safi-datatable-button>
+
+  <safi-datatable-splitbutton
+    *ngIf="splitButton"
+    [class]="splitButton.class"
+    [icon]="splitButton.icon"
+    [items]="splitButton.itens"
+    [label]="splitButton.label"
+    [method]="splitButton.method">
+  </safi-datatable-splitbutton>
+</ng-template>

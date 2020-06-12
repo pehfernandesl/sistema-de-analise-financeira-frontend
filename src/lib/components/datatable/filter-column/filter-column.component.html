@@ -1,0 +1,24 @@
+<div [ngSwitch]="filterType">
+  <div *ngSwitchCase="'text'">
+    <div class="ui-g form-group">
+      <div class="ui-md-12">
+                <span class="md-inputfield">
+                    <input (input)="filtrar($event)" [(ngModel)]="filtro" pInputText type="text">
+                    <label>{{ (header) ? header : 'Filtro' }}</label>
+                </span>
+      </div>
+    </div>
+  </div>
+  <div *ngSwitchCase="'select'">
+    <p-multiSelect
+      (onChange)="filtrar($event)"
+      [(ngModel)]="filtro"
+      [defaultLabel]="(header)? header: '&nbsp;'"
+      [ngModelOptions]="{standalone: true}"
+      [optionLabel]="'label'"
+      [options]="getCustomFilterOptions()"
+      [style]="{'width':'100%'}"
+      appendTo="body">
+    </p-multiSelect>
+  </div>
+</div>

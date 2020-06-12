@@ -1,0 +1,9 @@
+<div>
+    <form (submit)="submit()" class="ui-g form-group">
+        <ng-content></ng-content>
+        <div class="ui-g-12 ui-lg-2 ui-md-4 ui-sm-12">
+            <button pButton type="submit" [label]="saveLabel" [disabled]="form.disabled || form.invalid"></button>
+        </div>
+        <ng-content select="[nButton]"></ng-content>
+    </form>
+</div>

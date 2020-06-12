@@ -1,0 +1,22 @@
+<ng-container *ngIf="control.invalid && (control.dirty || control.touched) && control.errors">
+    <div class="form-notification-msg ui-message ui-messages-error ui-corner-all" >
+        <ng-container *ngIf="control.errors.required">
+            campo obrigatório
+        </ng-container>
+        <ng-container *ngIf="control.errors.minlength">
+            tamanho mínimo {{ control.errors.minlength.requiredLength }}
+        </ng-container>
+        <ng-container *ngIf="control.errors.maxlength">
+            tamanho máximo {{ control.errors.maxlength.requiredLength }}
+        </ng-container>
+        <ng-container *ngIf="control.errors.min">
+            valor mínimo {{ control.errors.min.min }}
+        </ng-container>
+        <ng-container *ngIf="control.errors.max">
+            valor máximo {{ control.errors.max.max }}
+        </ng-container>
+        <ng-container *ngIf="control.errors.email || control.errors.pattern">
+            campo inválido
+        </ng-container>
+    </div>
+</ng-container>

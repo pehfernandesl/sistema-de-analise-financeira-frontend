@@ -1,0 +1,13 @@
+<nForm (save)="findAll($event)" [form]="form" [saveLabel]="findLabel">
+  <ng-content select="[nForm]"></ng-content>
+  <div class="ui-g-12 ui-lg-2 ui-md-4 ui-sm-12" nButton>
+    <button [routerLink]="['../save']" label="Novo" pButton type="button"></button>
+  </div>
+</nForm>
+
+<basis-datatable #datatable (buttonClick)="datatableClick($event)" [url]="crudService.uri" [value]="result">
+  <ng-content select="p-column"></ng-content>
+</basis-datatable>
+
+<p-confirmDialog acceptLabel="Sim" header="Confirmar Exclusão" icon="pi pi-exclamation-triangle"
+                 rejectLabel="Não"></p-confirmDialog>

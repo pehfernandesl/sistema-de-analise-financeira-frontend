@@ -1,0 +1,36 @@
+body .ui-datatable .ui-datatable-data tr td {
+  word-wrap: break-word;
+}
+
+.horizontal-buttons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+.horizontal-button {
+  padding: 0 3px;
+}
+
+.horizontal-buttons-header {
+  font-size: 1.3em;
+  word-wrap: break-word;
+}
+
+.center-spinner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.text-right {
+  text-align: right;
+}
+
+basis-show-column .ui-multiselect-panel.ui-widget {
+  width: 100%;
+  max-width: 100%
+}
