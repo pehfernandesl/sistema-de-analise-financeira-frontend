@@ -10,11 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class DespesaComponent implements OnInit {
+  constructor() {}
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

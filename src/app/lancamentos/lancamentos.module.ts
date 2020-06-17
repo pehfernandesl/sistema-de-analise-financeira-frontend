@@ -1,18 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
-import { DespesaComponent } from './despesa/despesa.component';
-import { ReceitaComponent } from './receita/receita.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { SharedModule } from '../shared/shared.module';
+import { DespesaListaComponent } from './despesa/despesa-lista.component';
+import { DespesaComponent } from './despesa/despesa.component';
 import { routes } from './lancamentos.routes';
 import { ReceitaListaComponent } from './receita/receita-lista.component';
+import { ReceitaComponent } from './receita/receita.component';
 
 @NgModule({
-  declarations: [DespesaComponent, ReceitaComponent, ReceitaListaComponent],
-  imports: [
-    CommonModule, SharedModule, RouterModule.forChild(routes)
-  ]
+  declarations: [
+    DespesaComponent,
+    DespesaListaComponent,
+    ReceitaComponent,
+    ReceitaListaComponent
+  ],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)]
 })
-export class LancamentosModule {
-}
+export class LancamentosModule {}

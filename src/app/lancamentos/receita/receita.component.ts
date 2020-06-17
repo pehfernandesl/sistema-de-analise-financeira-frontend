@@ -7,14 +7,10 @@ import { Component, OnInit } from '@angular/core';
       receita works!
     </p>
   `,
-  styles: [
-  ]
+  styles: []
 })
 export class ReceitaComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

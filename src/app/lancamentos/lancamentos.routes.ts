@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { DespesaComponent } from './despesa/despesa.component';
+import { DespesaListaComponent } from './despesa/despesa-lista.component';
 import { ReceitaListaComponent } from './receita/receita-lista.component';
 
 export const routes: Routes = [
   {
     path: 'despesas',
-    component: DespesaComponent,
+    component: DespesaListaComponent,
     data: { breadcrumb: 'Minhas Despesas' }
   },
   {
