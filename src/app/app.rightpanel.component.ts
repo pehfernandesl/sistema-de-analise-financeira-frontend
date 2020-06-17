@@ -66,7 +66,7 @@ import { ScrollPanel } from 'primeng';
         </div>
       </p-scrollPanel>
     </div>
-  `,
+  `
 })
 export class AppRightpanelComponent implements AfterViewInit {
   @ViewChild('scrollRightPanel', { static: true })

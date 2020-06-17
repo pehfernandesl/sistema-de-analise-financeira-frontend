@@ -1,12 +1,12 @@
 import {
-  Component,
   AfterViewInit,
+  Component,
   ElementRef,
-  Renderer2,
-  ViewChild,
+  NgZone,
   OnDestroy,
   OnInit,
-  NgZone,
+  Renderer2,
+  ViewChild
 } from '@angular/core';
 import { ScrollPanel } from 'primeng/scrollpanel';
 import { MenusService } from '../lib/components/menu/menu.service';
@@ -15,13 +15,12 @@ enum MenuOrientation {
   STATIC,
   OVERLAY,
   SLIM,
-  HORIZONTAL,
+  HORIZONTAL
 }
 
 @Component({
   selector: 'safi-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
   layoutCompact = true;
@@ -75,6 +74,22 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     this.menuService.itens = [
       { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
+      {
+        label: 'Lançamentos',
+        icon: 'dashboard',
+        items: [
+          {
+            label: 'Despesas',
+            icon: 'dashboard',
+            routerLink: ['/lancamentos/despesas']
+          },
+          {
+            label: 'Receitas',
+            icon: 'dashboard',
+            routerLink: ['/lancamentos/receitas']
+          }
+        ]
+      }
     ];
   }
 
@@ -158,6 +173,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
     ink.style.pointerEvents = 'none';
     this.addClass(ink, 'ripple-animate');
   }
+
   hasClass(element, className) {
     if (element.classList) {
       return element.classList.contains(className);
@@ -205,7 +221,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         (window.pageXOffset ||
           document.documentElement.scrollLeft ||
           document.body.scrollLeft ||
-          0),
+          0)
     };
   }
 
