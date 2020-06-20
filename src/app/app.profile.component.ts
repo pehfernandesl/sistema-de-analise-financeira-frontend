@@ -7,6 +7,7 @@ import {
 } from '@angular/animations';
 import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home.component';
 
 @Component({
   selector: 'safi-inline-profile',
@@ -77,7 +78,7 @@ import { AppComponent } from './app.component';
 export class AppInlineProfileComponent {
   active: boolean;
 
-  constructor(public app: AppComponent) {}
+  constructor(public app: HomeComponent) {}
 
   onClick(event) {
     this.active = !this.active;

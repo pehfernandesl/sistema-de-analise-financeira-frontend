@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { PRIMENG_IMPORTS } from '../primeng-imports';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatatableModule } from '@components/datatable/datatable.module';
-
+import { PRIMENG_IMPORTS } from '../primeng-imports';
+import { LocalStorageService } from './local-storage/local-storage.service';
 
 @NgModule({
   declarations: [],
@@ -22,7 +22,7 @@ import { DatatableModule } from '@components/datatable/datatable.module';
     ReactiveFormsModule,
     HttpClientModule,
     PRIMENG_IMPORTS
-  ]
+  ],
+  providers: [LocalStorageService]
 })
-export class SharedModule {
-}
+export class SharedModule {}

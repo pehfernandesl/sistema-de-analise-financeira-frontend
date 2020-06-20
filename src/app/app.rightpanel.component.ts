@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ScrollPanel } from 'primeng';
+import { HomeComponent } from './home.component';
 
 @Component({
   selector: 'safi-rightpanel',
@@ -72,7 +73,7 @@ export class AppRightpanelComponent implements AfterViewInit {
   @ViewChild('scrollRightPanel', { static: true })
   rightPanelMenuScrollerViewChild: ScrollPanel;
 
-  constructor(public app: AppComponent) {}
+  constructor(public app: HomeComponent) {}
 
   ngAfterViewInit() {
     setTimeout(() => {
