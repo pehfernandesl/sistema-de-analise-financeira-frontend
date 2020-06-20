@@ -18,17 +18,19 @@ import { AppComponent } from './app.component';
 import { AppFooterComponent } from './app.footer.component';
 import { AppInlineProfileComponent } from './app.profile.component';
 import { AppRightpanelComponent } from './app.rightpanel.component';
-import { AppRoutes } from './app.routes';
 import { AppTopbarComponent } from './app.topbar.component';
 import { AuthGuard } from './auth.guard';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard.component';
+import { LoginComponent } from './login.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutes,
+    AppRoutingModule,
     AccessbilityModule,
     VersionTagModule,
     BlockUiModule,
@@ -48,7 +50,9 @@ import { SharedModule } from './shared/shared.module';
     AppTopbarComponent,
     AppFooterComponent,
     AppRightpanelComponent,
-    AppInlineProfileComponent
+    AppInlineProfileComponent,
+    DashboardComponent,
+    LoginComponent
   ],
   providers: [
     {

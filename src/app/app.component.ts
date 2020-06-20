@@ -1,3 +1,4 @@
+import { AuthService } from './shared/auth/auth.service';
 import {
   Component,
   ElementRef,
@@ -60,17 +61,19 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
   rippleMouseDownListener: any;
 
+  user = "sada";
+
   constructor(
     public renderer2: Renderer2,
     public zone: NgZone,
-    public menuService: MenusService
+    public menuService: MenusService,
+    public authService: AuthService
   ) {}
 
   ngOnInit() {
     this.zone.runOutsideAngular(() => {
       this.bindRipple();
     });
-
     this.menuService.itens = [
       { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
       {
