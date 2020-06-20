@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatatableModule } from '@components/datatable/datatable.module';
 import { PRIMENG_IMPORTS } from '../primeng-imports';
+import { AuthService } from './auth/auth.service';
 import { LocalStorageService } from './local-storage/local-storage.service';
 
 @NgModule({
@@ -23,6 +24,6 @@ import { LocalStorageService } from './local-storage/local-storage.service';
     HttpClientModule,
     PRIMENG_IMPORTS
   ],
-  providers: [LocalStorageService]
+  providers: [LocalStorageService, AuthService]
 })
 export class SharedModule {}

@@ -1,0 +1,46 @@
+<div
+  class="layout-wrapper"
+  [ngClass]="{ 'layout-compact': layoutCompact }"
+  (click)="onLayoutClick()"
+>
+  <div
+    #layoutContainer
+    class="layout-container"
+    [ngClass]="{
+      'menu-layout-static': !menuService.isOverlay(),
+      'menu-layout-overlay': menuService.isOverlay(),
+      'layout-menu-overlay-active': menuService.overlayMenuActive,
+      'menu-layout-horizontal': menuService.isHorizontal(),
+      'menu-layout-slim': menuService.isSlim(),
+      'layout-menu-static-inactive': menuService.staticMenuDesktopInactive,
+      'layout-menu-static-active': menuService.staticMenuMobileActive
+    }"
+  >
+    <safi-topbar></safi-topbar>
+
+    <div
+      class="layout-menu"
+      [ngClass]="{ 'layout-menu-dark': darkMenu }"
+      (click)="onMenuClick($event)"
+    >
+      <p-scrollPanel #scrollPanel [style]="{ height: '100%' }">
+        <safi-menu></safi-menu>
+      </p-scrollPanel>
+    </div>
+
+    <div class="layout-main">
+      <breadcrumb></breadcrumb>
+
+      <div class="layout-content">
+        <safi-page-notification></safi-page-notification>
+
+        <router-outlet></router-outlet>
+
+        <safi-footer></safi-footer>
+      </div>
+    </div>
+    <safi-rightpanel></safi-rightpanel>
+
+    <div class="layout-mask"></div>
+  </div>
+</div>

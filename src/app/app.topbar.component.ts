@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Authentication } from '../lib/base/security/authentication/authentication';
 import { User } from '../lib/base/security/authentication/user';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home.component';
 
 @Component({
   selector: 'safi-topbar',
@@ -10,7 +9,7 @@ import { HomeComponent } from './home.component';
 })
 export class AppTopbarComponent {
   constructor(
-    public app: HomeComponent,
+    public app: AppComponent,
     private authentication: Authentication<User>
   ) {}
 
