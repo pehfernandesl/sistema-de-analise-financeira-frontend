@@ -23,8 +23,6 @@ import { AppTopbarComponent } from './app.topbar.component';
 import { AuthGuard } from './auth.guard';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { SharedModule } from './shared/shared.module';
-import { HomeComponent } from './home.component';
-import { LoginModule } from './login/login.module';
 
 @NgModule({
   imports: [
@@ -43,7 +41,6 @@ import { LoginModule } from './login/login.module';
     MenuModule,
     SecurityModule.forRoot(environment.auth),
     SharedModule,
-    LoginModule,
     LancamentosModule
   ],
   declarations: [
@@ -51,8 +48,7 @@ import { LoginModule } from './login/login.module';
     AppTopbarComponent,
     AppFooterComponent,
     AppRightpanelComponent,
-    AppInlineProfileComponent,
-    HomeComponent
+    AppInlineProfileComponent
   ],
   providers: [
     {

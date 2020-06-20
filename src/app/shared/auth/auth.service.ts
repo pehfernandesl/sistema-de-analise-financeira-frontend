@@ -11,7 +11,7 @@ export class AuthService {
     const token = this.localStorageService.getTokenFromStorage();
 
     if (token) {
-      //Validar Token
+      // TODO: Validar Token
       return true;
     }
     return false;
