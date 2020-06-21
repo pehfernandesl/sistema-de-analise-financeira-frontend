@@ -5,33 +5,37 @@
         <span class="logo">
           <!--<i class="fa ui-icon-landscape">logo</i>-->
         </span>
-        <h1 class="title p-b-34 p-t-27">LOGIN</h1>
-
+        <h1 class="title p-b-34 p-t-27">Seja Bem-vindo(a)!</h1>
+        <p>Acesse a sua conta</p>
         <div class="ui-g-12">
           <div class="ui-g-12 ui-md-12 ui-sm-12 input">
-            <input type="text" pInputText formControlName="email" />
-            <span class="username" data-placeholder=""></span>
+            <span class="ui-float-label">
+              <label>Email</label>
+              <input type="text" pInputText formControlName="email" />
+            </span>
           </div>
           <div
             *ngIf="
-                loginForm.controls['email'] &&
-                !loginForm.controls['email'].valid &&
-                (loginForm.controls['email'].touched )
-              "
+              loginForm.controls['email'] &&
+              !loginForm.controls['email'].valid &&
+              loginForm.controls['email'].touched
+            "
             class="ui-message ui-messages-error"
           >
             Campo obrigatório.
           </div>
           <div class="ui-g-12 ui-md-12 ui-sm-12 input">
-            <input pPassword type="password" formControlName="senha"/>
-            <span class="password" data-placeholder=""></span>
+            <span class="ui-float-label">
+              <label>Senha</label>
+              <input pPassword type="password" formControlName="senha" />
+            </span>
           </div>
           <div
             *ngIf="
-                loginForm.controls['senha'] &&
-                !loginForm.controls['senha'].valid &&
-                (loginForm.controls['senha'].touched )
-              "
+              loginForm.controls['senha'] &&
+              !loginForm.controls['senha'].valid &&
+              loginForm.controls['senha'].touched
+            "
             class="ui-message ui-messages-error"
           >
             Campo obrigatório.
@@ -39,12 +43,19 @@
         </div>
 
         <div class="ui-g-12 login-btn">
-          <button pButton type="submit" (click)="login()">
-            <span>Login</span>
-          </button>
-          <button pButton type="submit">
-            <span>Limpar</span>
-          </button>
+          <button
+            pButton
+            type="submit"
+            label="Login"
+            (click)="login()"
+            style="margin: 5px;"
+          ></button>
+          <button
+            pButton
+            type="submit"
+            label="Limpar"
+            style="margin: 5px;"
+          ></button>
         </div>
       </form>
     </div>

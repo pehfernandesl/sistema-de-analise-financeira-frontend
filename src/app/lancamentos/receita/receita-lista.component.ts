@@ -17,6 +17,10 @@ export class ReceitaListaComponent implements OnInit {
     this.refreshReceitas();
   }
 
+  public onDatabaseButtonClick(event): void {
+    console.log(event);
+  }
+
   public refreshReceitas(): void {
     this.receitaService.getReceitas().subscribe((receitas) => {
       this.receitas = receitas;
