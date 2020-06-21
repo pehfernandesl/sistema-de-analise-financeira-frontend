@@ -5,6 +5,7 @@ import { LocaleSettings } from 'primeng';
 import { Despesa } from './despesa';
 import { DespesaService } from './despesa.service';
 import { Router } from '@angular/router';
+import { PageNotificationService } from '@components/page-notification/page-notification.service';
 
 @Component({
   selector: 'safi-despesa-form',
