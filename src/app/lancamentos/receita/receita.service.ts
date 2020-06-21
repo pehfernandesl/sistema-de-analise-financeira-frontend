@@ -17,4 +17,8 @@ export class ReceitaService {
       params: new HttpParams().set('sort', 'id')
     });
   }
+
+  public create(receita: Receita): Observable<Receita> {
+    return this.httpClient.post<Receita>(this.api, receita);
+  }
 }

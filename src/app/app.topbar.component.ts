@@ -20,4 +20,8 @@ export class AppTopbarComponent {
   get usuario() {
     return this.authService.getActiveUserEmail();
   }
+
+  getActiveUserEmail() {
+    return this.authService.getActiveUserEmail();
+  }
 }

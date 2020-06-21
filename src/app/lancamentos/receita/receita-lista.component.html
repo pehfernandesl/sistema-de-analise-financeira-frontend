@@ -5,7 +5,12 @@
       <div class="ui-g">
         <div class="ui-g-12 ui-md-12 ui-fluid">
           <span class="md-inputfield" style="margin-top: 5px;">
-            <input pInputText type="text" class="ui-inputtext" name="descricao">
+            <input
+              pInputText
+              type="text"
+              class="ui-inputtext"
+              name="descricao"
+            />
             <label>Descrição da Receita</label>
           </span>
         </div>
@@ -14,18 +19,31 @@
             <button pButton label="Pesquisar" icon="ui-icon-search"></button>
           </div>
           <div class="ui-g-5">
-            <button pButton label="Cadastrar" [routerLink]="['/receitas/new']" icon="ui-icon-add"></button>
+            <button
+              pButton
+              label="Cadastrar"
+              [routerLink]="['/receitas/new']"
+              icon="ui-icon-add"
+            ></button>
           </div>
-          <safi-datatable type="memory" [value]="getReceitas()" disableDelete="true" disableEdit="true" disableView="true">
+          <safi-datatable
+            type="memory"
+            [value]="getReceitas()"
+            disableDelete="true"
+            disableEdit="true"
+            disableView="true"
+          >
             <p-column header="#" field="id"></p-column>
             <p-column header="Descrição" field="descricao"></p-column>
             <p-column header="Valor R$" field="valor"></p-column>
+            <p-column header="Data Lançamento" field="dataLancamento">
+              <ng-template let-data="rowData">
+                {{ data | date: 'dd/MM/yyyy' }}
+              </ng-template>
+            </p-column>
           </safi-datatable>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
