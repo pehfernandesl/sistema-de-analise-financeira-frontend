@@ -73,7 +73,8 @@ export class DespesaFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private despesaService: DespesaService
+    private despesaService: DespesaService,
+    private pageNotificationService: PageNotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -82,6 +83,10 @@ export class DespesaFormComponent implements OnInit {
     this.despesaService
       .create(this.normalizeDespesa(this.despesaForm.value))
       .subscribe((resposta) => {
+        this.pageNotificationService.addCreateMsg(
+          'A Despesa foi salva com sucesso!'
+        );
+
         this.router.navigate(['/despesas']);
       });
   }

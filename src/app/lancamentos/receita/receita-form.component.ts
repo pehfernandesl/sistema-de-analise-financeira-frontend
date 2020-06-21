@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LocaleSettings } from 'primeng';
-import { CALENDAR_LOCALE } from '@components/crud/components/calendar/calendar-locale';
-import { Validators, FormBuilder } from '@angular/forms';
-import { ReceitaService } from './receita.service';
-import { Receita } from './receita';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CALENDAR_LOCALE } from '@components/crud/components/calendar/calendar-locale';
+import { LocaleSettings } from 'primeng';
+import { ReceitaService } from './receita.service';
+import { PageNotificationService } from '@components/page-notification/page-notification.service';
 
 @Component({
   selector: 'safi-receita-form',
@@ -71,13 +71,18 @@ export class ReceitaFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private receitaService: ReceitaService
+    private receitaService: ReceitaService,
+    private pageNotificationService: PageNotificationService
   ) {}
 
   ngOnInit(): void {}
 
   public salvar(): void {
     this.receitaService.create(this.receitaForm.value).subscribe((resposta) => {
+      this.pageNotificationService.addCreateMsg(
+        'A Receita foi salva com sucesso!'
+      );
+
       this.router.navigate(['/receitas']);
     });
   }
