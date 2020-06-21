@@ -11,10 +11,14 @@ export class DespesaService {
   public readonly api = `${environment.apiUrl}/despesas`;
 
   constructor(private httpClient: HttpClient) {}
-r
+
   public getDespesas(): Observable<Despesa[]> {
     return this.httpClient.get<Despesa[]>(this.api, {
       params: new HttpParams().set('sort', 'id')
     });
+  }
+
+  public create(despesa: Despesa): Observable<Despesa> {
+    return this.httpClient.post<Despesa>(this.api, despesa);
   }
 }
