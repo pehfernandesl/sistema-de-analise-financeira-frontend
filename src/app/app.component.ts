@@ -77,13 +77,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
       {
         label: 'Extratos Bancários',
         icon: 'dashboard',
-        items: [
-          {
-            label: 'Importar Extrato OFX',
-            icon: 'dashboard',
-            routerLink: ['']
-          }
-        ]
+        routerLink: ['/extratos']
       },
       {
         label: 'Lançamentos',

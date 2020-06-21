@@ -1,0 +1,43 @@
+
+      {{ extratoForm.value | json }}
+    <div class="ui-g ui-fluid">
+      <form [formGroup]="extratoForm">
+        <div class="ui-g-12">
+          <div>
+            <h1>Lançar Novo Extrato</h1>
+          </div>
+          <div formGroupName="id">
+            <div class="ui-g-12">
+              <span class="ui-float-label">
+                <input pInputNumber formControlName="tpBanco" />
+                <label>Banco</label>
+              </span>
+            </div>
+            <div class="ui-g-12">
+              <span class="ui-float-label">
+                <p-calendar
+                  [locale]="calendarLocale"
+                  formControlName="mesAno"
+                ></p-calendar>
+                <label>Data de Lançamento</label>
+              </span>
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <span class="ui-float-label">
+              <input pInputText formControlName="arquivoBase64" />
+              <label>Arquivo</label>
+            </span>
+          </div>
+          <div class="ui-g-4">
+            <button
+              pButton
+              icon="ui-icon-add"
+              label="Salvar"
+              [disabled]="extratoForm.invalid"
+              (click)="salvar()"
+            ></button>
+          </div>
+        </div>
+      </form>
+    </div>
