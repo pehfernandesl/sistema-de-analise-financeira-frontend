@@ -16,30 +16,30 @@
       'layout-menu-static-active': menuService.staticMenuMobileActive
     }"
   >
-    <safi-topbar></safi-topbar>
+    <safi-topbar *ngIf="authService.isAuthenticated()"></safi-topbar>
 
-    <div
+    <div *ngIf="authService.isAuthenticated()"
       class="layout-menu"
       [ngClass]="{ 'layout-menu-dark': darkMenu }"
       (click)="onMenuClick($event)"
     >
-      <p-scrollPanel #scrollPanel [style]="{ height: '100%' }">
-        <safi-menu></safi-menu>
+      <p-scrollPanel  #scrollPanel [style]="{ height: '100%' }">
+        <safi-menu ></safi-menu>
       </p-scrollPanel>
     </div>
 
-    <div class="layout-main">
-      <breadcrumb></breadcrumb>
+    <div class="layout-main" >
+      <breadcrumb *ngIf="authService.isAuthenticated()"></breadcrumb>
 
-      <div class="layout-content">
-        <safi-page-notification></safi-page-notification>
+      <div class="layout-content" >
+        <safi-page-notification *ngIf="authService.isAuthenticated()"></safi-page-notification>
 
         <router-outlet></router-outlet>
 
-        <safi-footer></safi-footer>
+        <safi-footer *ngIf="authService.isAuthenticated()"></safi-footer>
       </div>
     </div>
-    <safi-rightpanel></safi-rightpanel>
+    <safi-rightpanel *ngIf="authService.isAuthenticated()"></safi-rightpanel>
 
     <div class="layout-mask"></div>
   </div>

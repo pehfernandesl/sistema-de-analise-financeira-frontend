@@ -1,12 +1,13 @@
+import { AuthService } from './shared/auth/auth.service';
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   NgZone,
-  OnDestroy,
-  OnInit,
   Renderer2,
-  ViewChild
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
+  OnInit
 } from '@angular/core';
 import { ScrollPanel } from 'primeng/scrollpanel';
 import { MenusService } from '../lib/components/menu/menu.service';
@@ -17,7 +18,6 @@ enum MenuOrientation {
   SLIM,
   HORIZONTAL
 }
-
 @Component({
   selector: 'safi-root',
   templateUrl: './app.component.html'
@@ -64,16 +64,27 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
   constructor(
     public renderer2: Renderer2,
     public zone: NgZone,
-    public menuService: MenusService
+    public menuService: MenusService,
+    public authService: AuthService
   ) {}
 
   ngOnInit() {
     this.zone.runOutsideAngular(() => {
       this.bindRipple();
     });
-
     this.menuService.itens = [
       { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
+      {
+        label: 'Extratos Bancários',
+        icon: 'dashboard',
+        items: [
+          {
+            label: 'Importar Extrato OFX',
+            icon: 'dashboard',
+            routerLink: ['']
+          }
+        ]
+      },
       {
         label: 'Lançamentos',
         icon: 'dashboard',

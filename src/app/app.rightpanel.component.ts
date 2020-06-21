@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-
-import { AppComponent } from './app.component';
 import { ScrollPanel } from 'primeng';
+import { AppComponent } from './app.component';
+
 
 @Component({
   selector: 'safi-rightpanel',
