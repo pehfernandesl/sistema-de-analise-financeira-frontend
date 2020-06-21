@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-
-import { AppComponent } from './app.component';
 import { ScrollPanel } from 'primeng';
+import { AppComponent } from './app.component';
+
 
 @Component({
   selector: 'safi-rightpanel',
@@ -66,7 +66,7 @@ import { ScrollPanel } from 'primeng';
         </div>
       </p-scrollPanel>
     </div>
-  `,
+  `
 })
 export class AppRightpanelComponent implements AfterViewInit {
   @ViewChild('scrollRightPanel', { static: true })

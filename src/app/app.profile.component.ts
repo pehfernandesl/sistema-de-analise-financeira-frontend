@@ -3,11 +3,10 @@ import {
   state,
   style,
   transition,
-  trigger,
+  trigger
 } from '@angular/animations';
-
-import { AppComponent } from './app.component';
 import { Component } from '@angular/core';
+import { AppComponent } from './app.component';
 
 @Component({
   selector: 'safi-inline-profile',
@@ -55,13 +54,13 @@ import { Component } from '@angular/core';
       state(
         'hidden',
         style({
-          height: '0px',
+          height: '0px'
         })
       ),
       state(
         'visible',
         style({
-          height: '*',
+          height: '*'
         })
       ),
       transition(
@@ -71,9 +70,9 @@ import { Component } from '@angular/core';
       transition(
         'hidden => visible',
         animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')
-      ),
-    ]),
-  ],
+      )
+    ])
+  ]
 })
 export class AppInlineProfileComponent {
   active: boolean;

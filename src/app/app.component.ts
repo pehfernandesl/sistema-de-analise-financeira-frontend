@@ -1,12 +1,13 @@
+import { AuthService } from './shared/auth/auth.service';
 import {
   Component,
-  AfterViewInit,
   ElementRef,
+  NgZone,
   Renderer2,
   ViewChild,
+  AfterViewInit,
   OnDestroy,
-  OnInit,
-  NgZone,
+  OnInit
 } from '@angular/core';
 import { ScrollPanel } from 'primeng/scrollpanel';
 import { MenusService } from '../lib/components/menu/menu.service';
@@ -15,13 +16,11 @@ enum MenuOrientation {
   STATIC,
   OVERLAY,
   SLIM,
-  HORIZONTAL,
+  HORIZONTAL
 }
-
 @Component({
   selector: 'safi-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
   layoutCompact = true;
@@ -65,16 +64,43 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
   constructor(
     public renderer2: Renderer2,
     public zone: NgZone,
-    public menuService: MenusService
+    public menuService: MenusService,
+    public authService: AuthService
   ) {}
 
   ngOnInit() {
     this.zone.runOutsideAngular(() => {
       this.bindRipple();
     });
-
     this.menuService.itens = [
       { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
+      {
+        label: 'Extratos Bancários',
+        icon: 'dashboard',
+        items: [
+          {
+            label: 'Importar Extrato OFX',
+            icon: 'dashboard',
+            routerLink: ['']
+          }
+        ]
+      },
+      {
+        label: 'Lançamentos',
+        icon: 'dashboard',
+        items: [
+          {
+            label: 'Despesas',
+            icon: 'dashboard',
+            routerLink: ['/lancamentos/despesas']
+          },
+          {
+            label: 'Receitas',
+            icon: 'dashboard',
+            routerLink: ['/lancamentos/receitas']
+          }
+        ]
+      }
     ];
   }
 
@@ -158,6 +184,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
     ink.style.pointerEvents = 'none';
     this.addClass(ink, 'ripple-animate');
   }
+
   hasClass(element, className) {
     if (element.classList) {
       return element.classList.contains(className);
@@ -205,7 +232,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         (window.pageXOffset ||
           document.documentElement.scrollLeft ||
           document.body.scrollLeft ||
-          0),
+          0)
     };
   }
 

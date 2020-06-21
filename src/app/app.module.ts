@@ -1,38 +1,39 @@
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
-import { AccessbilityModule } from '../lib/base/accessibility/accessibility.module';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccessbilityModule } from '@base/accessibility/accessibility.module';
+import { ClipboardModule } from '@base/clipboard/clipboard.module';
+import { ErrorModule } from '@base/error/error.module';
+import { SecurityModule } from '@base/security/security.module';
+import { VersionTagModule } from '@base/version-tag/version-tag.module';
+import { BlockUiModule } from '@components/block-ui/block-ui.module';
+import { BreadcrumbModule } from '@components/breadcrumb/breadcrumb.module';
+import { DatatableModule } from '@components/datatable/datatable.module';
+import { ErrorStackModule } from '@components/error-stack/error-stack.module';
+import { MenuModule } from '@components/menu/menu.module';
+import { PageNotificationModule } from '@components/page-notification/page-notification.module';
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppFooterComponent } from './app.footer.component';
 import { AppInlineProfileComponent } from './app.profile.component';
 import { AppRightpanelComponent } from './app.rightpanel.component';
-import { AppRoutes } from './app.routes';
 import { AppTopbarComponent } from './app.topbar.component';
-import { BlockUiModule } from '../lib/components/block-ui/block-ui.module';
-import { BreadcrumbModule } from '../lib/components/breadcrumb/breadcrumb.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { ClipboardModule } from '../lib/base/clipboard/clipboard.module';
-import { DatatableModule } from '../lib/components/datatable/datatable.module';
-// import { DiarioErrosComponent } from './diario-erros/diario-erros.component';
-import { ErrorModule } from '../lib/base/error/error.module';
-import { ErrorStackModule } from '../lib/components/error-stack/error-stack.module';
-import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './auth.guard';
+import { LancamentosModule } from './lancamentos/lancamentos.module';
+import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard.component';
+import { LoginComponent } from './login.component';
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
-import { MenuModule } from '../lib/components/menu/menu.module';
-import { NgModule } from '@angular/core';
-import { PRIMENG_IMPORTS } from './primeng-imports';
-import { PageNotificationModule } from '../lib/components/page-notification/page-notification.module';
-import { SecurityModule } from '../lib/base/security/security.module';
-import { VersionTagModule } from '../lib/base/version-tag/version-tag.module';
-import { environment } from '../environments/environment';
+import { ExtratosModule } from './extratos/extratos.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
-    AppRoutes,
-    HttpClientModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     AccessbilityModule,
     VersionTagModule,
     BlockUiModule,
@@ -41,28 +42,29 @@ import { environment } from '../environments/environment';
     ClipboardModule,
     ErrorModule,
     DatatableModule,
-    SecurityModule.forRoot(environment.auth),
     BreadcrumbModule,
     MenuModule,
-    PRIMENG_IMPORTS
-  ],
-  exports: [
-    PRIMENG_IMPORTS
+    SecurityModule.forRoot(environment.auth),
+    SharedModule,
+    LancamentosModule,
+    ExtratosModule
   ],
   declarations: [
     AppComponent,
     AppTopbarComponent,
     AppFooterComponent,
     AppRightpanelComponent,
-    AppInlineProfileComponent
+    AppInlineProfileComponent,
+    DashboardComponent,
+    LoginComponent
   ],
   providers: [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
