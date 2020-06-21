@@ -1,0 +1,71 @@
+<div class="ui-g ui-fluid login-template" *ngIf="true">
+  <div class="ui-g-10 container-login">
+    <div class="card card-w-title login-panel">
+      <form novalidate [formGroup]="loginForm">
+        <span class="logo">
+          <!--<i class="fa ui-icon-landscape">logo</i>-->
+        </span>
+        <h1 class="title p-b-34 p-t-27">LOGIN</h1>
+
+        <div class="ui-g-12">
+          <div class="ui-g-12 ui-md-12 ui-sm-12 input">
+            <input type="text" pInputText formControlName="email" />
+            <span class="username" data-placeholder=""></span>
+          </div>
+          <div
+            *ngIf="
+                loginForm.controls['email'] &&
+                !loginForm.controls['email'].valid &&
+                (loginForm.controls['email'].touched )
+              "
+            class="ui-message ui-messages-error"
+          >
+            Campo obrigatório.
+          </div>
+          <div class="ui-g-12 ui-md-12 ui-sm-12 input">
+            <input pPassword type="password" formControlName="senha"/>
+            <span class="password" data-placeholder=""></span>
+          </div>
+          <div
+            *ngIf="
+                loginForm.controls['senha'] &&
+                !loginForm.controls['senha'].valid &&
+                (loginForm.controls['senha'].touched )
+              "
+            class="ui-message ui-messages-error"
+          >
+            Campo obrigatório.
+          </div>
+        </div>
+
+        <div class="ui-g-12 login-btn">
+          <button pButton type="submit" (click)="login()">
+            <span>Login</span>
+          </button>
+          <button pButton type="submit">
+            <span>Limpar</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ui-g-2"></div>
+</div>
+
+<div class="ui-g ui-fluid" *ngIf="false">
+  <div class="ui-g-12">
+    <!-- Inicio Após a autenticação exibir o campo abaixo-->
+    <div
+      class="card login-panel"
+      style="margin: 0px auto 0 auto; min-height: 50px;"
+    >
+      <span style="font-size: 20px;"> Nome do Usuário </span>
+
+      <p style="font-size: 20px;">Bem-vindo!</p>
+      <i class="material-icons" style="font-size: 200px; color: #618849;"
+        >blur_linear</i
+      >
+    </div>
+    <!-- Fim Após a autenticação exibir o campo abaixo-->
+  </div>
+</div>

@@ -20,6 +20,12 @@ const routes: Routes = [
     loadChildren: 'src/app/lancamentos/lancamentos.module#LancamentosModule',
     data: { breadcrumb: 'Lançamentos' },
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'extratos',
+    loadChildren: 'src/app/extratos/extratos.module#ExtratosModule',
+    data: { breadcrumb: 'Extratos' },
+    canActivate: [AuthGuard]
   }
 ];
 

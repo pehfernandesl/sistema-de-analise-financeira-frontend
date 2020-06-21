@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authService.isAuthenticated()) {
-      console.log('TEM TOKEN, NÃO FAZ NADA');
+      console.log('TEM TOKEN E ESTÁ VÁLIDO, NÃO FAZ NADA');
       return true;
     }
 

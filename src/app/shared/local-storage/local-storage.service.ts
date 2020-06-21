@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 export const STORAGE_KEYS = {
-  USER_TOKEN: 'userToken'
+  USER_TOKEN: 'userToken',
+  ACTIVE_USER_EMAIL: 'userEmail'
 };
 
 @Injectable({
@@ -20,5 +21,23 @@ export class LocalStorageService {
     }
 
     return null;
+  }
+
+  public getActiveUserEmailFromStorage(): string | null {
+    if (localStorage[STORAGE_KEYS.ACTIVE_USER_EMAIL]) {
+      return JSON.parse(localStorage[STORAGE_KEYS.ACTIVE_USER_EMAIL])?.email;
+    }
+
+    return null;
+  }
+
+  public storeActiveUserEmail(email: string): void {
+    localStorage[STORAGE_KEYS.ACTIVE_USER_EMAIL] = JSON.stringify({ email });
+
+  }
+
+  public clearUser(): void{
+    localStorage.removeItem(STORAGE_KEYS.ACTIVE_USER_EMAIL);
+    localStorage.removeItem(STORAGE_KEYS.USER_TOKEN);
   }
 }

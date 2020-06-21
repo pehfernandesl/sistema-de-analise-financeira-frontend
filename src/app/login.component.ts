@@ -1,20 +1,43 @@
+import { LocalStorageService } from './shared/local-storage/local-storage.service';
+import { AuthService } from './shared/auth/auth.service';
+import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'safi-login',
-  template: `
-    <p>
-      login works!
-    </p>
-  `,
-  styles: [
-  ]
+  templateUrl: './login.component.html',
+  styles: []
 })
 export class LoginComponent implements OnInit {
+  loginForm = this.fb.group({
+    email: [''],
+    senha: ['']
+  });
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private authService: AuthService,
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  login() {
+    this.loginService.login(this.loginForm.value).subscribe(
+      (resposta) => {
+        if (resposta.token){
+          this.localStorageService.storeToken(resposta.token);
+          this.localStorageService.storeActiveUserEmail(resposta.email);
+          this.router.navigate(['']);
+          console.log('OK');
+        }
+      },
+      (error) => {
+        console.log('NOK');
+      }
+    );
   }
-
 }

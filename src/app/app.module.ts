@@ -25,6 +25,9 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { LoginComponent } from './login.component';
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { ExtratosModule } from './extratos/extratos.module';
 
 @NgModule({
   imports: [
@@ -43,7 +46,8 @@ import { LoginComponent } from './login.component';
     MenuModule,
     SecurityModule.forRoot(environment.auth),
     SharedModule,
-    LancamentosModule
+    LancamentosModule,
+    ExtratosModule
   ],
   declarations: [
     AppComponent,

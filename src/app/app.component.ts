@@ -61,8 +61,6 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
   rippleMouseDownListener: any;
 
-  user = "sada";
-
   constructor(
     public renderer2: Renderer2,
     public zone: NgZone,
@@ -76,6 +74,17 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
     });
     this.menuService.itens = [
       { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
+      {
+        label: 'Extratos Bancários',
+        icon: 'dashboard',
+        items: [
+          {
+            label: 'Importar Extrato OFX',
+            icon: 'dashboard',
+            routerLink: ['']
+          }
+        ]
+      },
       {
         label: 'Lançamentos',
         icon: 'dashboard',

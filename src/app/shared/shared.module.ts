@@ -6,6 +6,7 @@ import { DatatableModule } from '@components/datatable/datatable.module';
 import { PRIMENG_IMPORTS } from '../primeng-imports';
 import { AuthService } from './auth/auth.service';
 import { LocalStorageService } from './local-storage/local-storage.service';
+import { AuthInterceptorProvider } from '../interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [],
@@ -24,6 +25,7 @@ import { LocalStorageService } from './local-storage/local-storage.service';
     HttpClientModule,
     PRIMENG_IMPORTS
   ],
-  providers: [LocalStorageService, AuthService]
+  providers: [LocalStorageService, AuthService, AuthInterceptorProvider
+  ]
 })
 export class SharedModule {}
