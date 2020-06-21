@@ -10,10 +10,14 @@ import { HttpClient } from '@angular/common/http';
 export class ExtratoService {
 
   constructor(private http: HttpClient) { }
+  private url = `${environment.apiUrl}/informacoes-bancarias`;
 
   public salvar(extrato: Extrato): Observable<Extrato> {
-    const url = `${environment.apiUrl}/extratos`;
-    return this.http.post<Extrato>(url, extrato);
-  };
+    return this.http.post<Extrato>(this.url, extrato);
+  }
+
+  public getExtratos(): Observable<Extrato[]>{
+    return this.http.get<Extrato[]>(this.url);
+  }
 
 }
