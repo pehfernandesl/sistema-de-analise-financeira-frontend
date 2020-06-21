@@ -14,9 +14,9 @@
             <button pButton label="Pesquisar" icon="ui-icon-search"></button>
           </div>
           <div class="ui-g-5">
-            <button pButton label="Cadastrar" icon="ui-icon-add"></button>
+            <button pButton label="Cadastrar" [routerLink]="['/receitas/new']" icon="ui-icon-add"></button>
           </div>
-          <safi-datatable type="memory" disableDelete="true" disableEdit="true" disableView="true">
+          <safi-datatable type="memory" [value]="getReceitas()" disableDelete="true" disableEdit="true" disableView="true">
             <p-column header="#" field="id"></p-column>
             <p-column header="Descrição" field="descricao"></p-column>
             <p-column header="Valor R$" field="valor"></p-column>

@@ -7,13 +7,15 @@ import { DespesaComponent } from './despesa/despesa.component';
 import { routes } from './lancamentos.routes';
 import { ReceitaListaComponent } from './receita/receita-lista.component';
 import { ReceitaComponent } from './receita/receita.component';
+import { ReceitaFormComponent } from './receita/receita-form.component';
 
 @NgModule({
   declarations: [
     DespesaComponent,
     DespesaListaComponent,
     ReceitaComponent,
-    ReceitaListaComponent
+    ReceitaListaComponent,
+    ReceitaFormComponent
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)]
 })

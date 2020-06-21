@@ -22,7 +22,8 @@
             <button pButton label="Cadastrar" icon="ui-icon-add"></button>
           </div>
           <safi-datatable
-            type="memory"
+            type="server"
+            [url]="api"
             disableDelete="true"
             disableEdit="true"
             disableView="true"
