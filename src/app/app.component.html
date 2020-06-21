@@ -1,6 +1,9 @@
 <div
   class="layout-wrapper"
-  [ngClass]="{ 'layout-compact': layoutCompact }"
+  [ngClass]="{
+    'layout-compact': layoutCompact,
+    gradient: !authService.isAuthenticated()
+  }"
   (click)="onLayoutClick()"
 >
   <div
@@ -18,21 +21,24 @@
   >
     <safi-topbar *ngIf="authService.isAuthenticated()"></safi-topbar>
 
-    <div *ngIf="authService.isAuthenticated()"
+    <div
+      *ngIf="authService.isAuthenticated()"
       class="layout-menu"
       [ngClass]="{ 'layout-menu-dark': darkMenu }"
       (click)="onMenuClick($event)"
     >
-      <p-scrollPanel  #scrollPanel [style]="{ height: '100%' }">
-        <safi-menu ></safi-menu>
+      <p-scrollPanel #scrollPanel [style]="{ height: '100%' }">
+        <safi-menu></safi-menu>
       </p-scrollPanel>
     </div>
 
-    <div class="layout-main" >
+    <div class="layout-main">
       <breadcrumb *ngIf="authService.isAuthenticated()"></breadcrumb>
 
-      <div class="layout-content" >
-        <safi-page-notification *ngIf="authService.isAuthenticated()"></safi-page-notification>
+      <div class="layout-content">
+        <safi-page-notification
+          *ngIf="authService.isAuthenticated()"
+        ></safi-page-notification>
 
         <router-outlet></router-outlet>
 
