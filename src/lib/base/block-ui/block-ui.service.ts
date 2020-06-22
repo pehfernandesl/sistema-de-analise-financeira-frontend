@@ -7,43 +7,42 @@ import { Subject } from 'rxjs';
  * @class
  */
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class BlockUiService {
+  /**
+   * subject property
+   * @private
+   * @type {Subject<BlockUiStatus>}
+   */
+  private subject = new Subject<BlockUiStatus>();
 
-    /**
-     * subject property
-     * @private
-     * @type {Subject<BlockUiStatus>}
-     */
-    private subject = new Subject<BlockUiStatus>();
+  /**
+   * loaderStatus property
+   * @public
+   * @type {Observable}
+   */
+  loaderStatus = this.subject.asObservable();
 
-    /**
-     * loaderStatus property
-     * @public
-     * @type {Observable}
-     */
-    loaderStatus = this.subject.asObservable();
+  /**
+   * constructor method
+   * @constructor
+   */
+  constructor() {}
 
-    /**
-     * constructor method
-     * @constructor
-     */
-    constructor() { }
+  /**
+   * show methods
+   * @returns void
+   */
+  show() {
+    this.subject.next(<BlockUiStatus>{ status: true });
+  }
 
-    /**
-     * show methods
-     * @returns void
-     */
-    show() {
-        this.subject.next(<BlockUiStatus>{ status: true });
-    }
-
-    /**
-     * hide methods
-     * @returns void
-     */
-    hide() {
-        this.subject.next(<BlockUiStatus>{ status: false });
-    }
+  /**
+   * hide methods
+   * @returns void
+   */
+  hide() {
+    this.subject.next(<BlockUiStatus>{ status: false });
+  }
 }

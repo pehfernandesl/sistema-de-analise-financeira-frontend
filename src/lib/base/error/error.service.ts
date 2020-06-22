@@ -6,32 +6,30 @@ import { ErrorProvider } from './providers/error.provider';
  * @class
  */
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root'
 })
 export class ErrorService extends ErrorHandler {
+  /**
+   * Metodo construtor responável por injetar o serviço ErrorProvider
+   * @param {ErrorProvider} providers
+   */
+  constructor(@Inject(ErrorProvider) private providers: ErrorProvider[]) {
+    super();
+  }
 
-    /**
-     * Metodo construtor responável por injetar o serviço ErrorProvider
-     * @param {ErrorProvider} providers
-     */
-    constructor(@Inject(ErrorProvider) private providers: ErrorProvider[]) {
-        super();
-    }
-
-    /**
-     * Metodo responsável por idetificar e obter os erros lançados de requisições http/https
-     * @param {Error} error
-     * @returns void
-     */
-    handleError(error: Error) {
-        try {
-            this.providers.forEach(p => {
-                if (p.shouldHandle(error)) {
-                    p.handle(error);
-                }
-            });
-        } catch (e) {
+  /**
+   * Metodo responsável por idetificar e obter os erros lançados de requisições http/https
+   * @param {Error} error
+   * @returns void
+   */
+  handleError(error: Error) {
+    try {
+      this.providers.forEach((p) => {
+        if (p.shouldHandle(error)) {
+          p.handle(error);
         }
-        super.handleError(error);
-    }
+      });
+    } catch (e) {}
+    super.handleError(error);
+  }
 }

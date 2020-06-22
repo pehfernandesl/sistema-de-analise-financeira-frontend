@@ -28,5 +28,4 @@ import { TableModule } from 'primeng/table';
   ],
   exports: [ErrorStackComponent]
 })
-export class ErrorStackModule {
-}
+export class ErrorStackModule {}

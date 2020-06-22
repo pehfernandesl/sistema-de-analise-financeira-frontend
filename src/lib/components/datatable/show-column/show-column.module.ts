@@ -18,13 +18,8 @@ import { ShowColumn } from './show-column.component';
     ReactiveFormsModule,
     InputTextModule
   ],
-  declarations: [
-    ShowColumn
-  ],
-  exports: [
-    ShowColumn
-  ],
+  declarations: [ShowColumn],
+  exports: [ShowColumn],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ShowColumnModule {
-}
+export class ShowColumnModule {}

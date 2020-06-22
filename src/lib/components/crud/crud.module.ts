@@ -88,10 +88,6 @@ import { AutoCompleteModule } from 'primeng';
     ValidationMessageComponent,
     DropdownComponent
   ],
-  providers: [
-    httpInterceptorProviders,
-    ConfirmationService
-  ]
+  providers: [httpInterceptorProviders, ConfirmationService]
 })
-export class CrudModule {
-}
+export class CrudModule {}

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'safi-dashboard',
+  selector: 'safi-relatorio',
   template: `
     <p>
-      dashboard works!
+      relatorio works!
     </p>
   `,
   styles: []
 })
-export class DashboardComponent implements OnInit {
+export class RelatorioComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

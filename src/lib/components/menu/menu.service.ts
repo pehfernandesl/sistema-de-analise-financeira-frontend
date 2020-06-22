@@ -12,7 +12,6 @@ export enum MenuOrientation {
   providedIn: 'root'
 })
 export class MenusService {
-
   layoutMode: MenuOrientation = MenuOrientation.STATIC;
 
   menuHoverActive: boolean;
@@ -60,5 +59,4 @@ export class MenusService {
   changeToSlimMenu() {
     this.layoutMode = MenuOrientation.SLIM;
   }
-
 }

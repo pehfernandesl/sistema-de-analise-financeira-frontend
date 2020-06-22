@@ -8,32 +8,30 @@ import { ErrorStackService } from './error-stack.service';
  * @class
  */
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root'
 })
 export class ErrorStackProviderService implements ErrorProvider {
+  /**
+   * Metodo construtor responsável por injetar o serviso de erros
+   * @param {ErrorStackService} errorStackService
+   */
+  constructor(private errorStackService: ErrorStackService) {}
 
-    /**
-     * Metodo construtor responsável por injetar o serviso de erros
-     * @param {ErrorStackService} errorStackService
-     */
-    constructor(private errorStackService: ErrorStackService) {}
+  /**
+   * Metodo responsável pela identificação de erros
+   * @param {Error} error
+   * @returns Boolean
+   */
+  shouldHandle(error: Error): Boolean {
+    return error instanceof HttpErrorResponse;
+  }
 
-    /**
-     * Metodo responsável pela identificação de erros
-     * @param {Error} error
-     * @returns Boolean
-     */
-    shouldHandle(error: Error): Boolean {
-        return error instanceof HttpErrorResponse;
-    }
-
-    /**
-     * Metodo pela adição de erros
-     * @param {HttpErrorResponse} error
-     * @returns void
-     */
-    handle(error: HttpErrorResponse) {
-        this.errorStackService.create(error);
-    }
-
+  /**
+   * Metodo pela adição de erros
+   * @param {HttpErrorResponse} error
+   * @returns void
+   */
+  handle(error: HttpErrorResponse) {
+    this.errorStackService.create(error);
+  }
 }

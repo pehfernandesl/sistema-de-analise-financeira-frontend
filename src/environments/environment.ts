@@ -16,10 +16,9 @@ export const environment = {
     storage: localStorage,
     tokenStorageIndex: 'token',
     userStorageIndex: 'user',
-    loginSuccessRoute: '',
-  },
+    loginSuccessRoute: ''
+  }
 };
-
 
 /*
  * For easier debugging in development mode, you can import the following file

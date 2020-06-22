@@ -10,16 +10,8 @@ import { RouterModule } from '@angular/router';
  * @module
  */
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule
-    ],
-    declarations: [
-        VersionTagComponent
-    ],
-    exports: [
-        VersionTagComponent
-    ]
+  imports: [CommonModule, RouterModule],
+  declarations: [VersionTagComponent],
+  exports: [VersionTagComponent]
 })
-export class VersionTagModule {
-}
+export class VersionTagModule {}

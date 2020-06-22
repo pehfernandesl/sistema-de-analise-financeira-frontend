@@ -20,58 +20,61 @@ import { Token } from './token/token';
 import { JWTTokenService } from './token/jwt-token.service';
 
 /**
- * O modulo de segurança contem funcionalidades para autenticação, autorização, redirecionamento 
+ * O modulo de segurança contem funcionalidades para autenticação, autorização, redirecionamento
  * para login, gerenciamento de tokens JWT e obtenção e armazenamento de dados de usuário.
  * @class
  */
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule,
-        HttpClientModule
-    ],
-    declarations: [
-        LogoutDirective,
-        UserDirective,
-        LoginSuccessComponent,
-        HasRoleDirective,
-        HideWhileLoginComponent
-    ],
-    providers: [
-        AuthorizationService,
-        AuthenticationService,
-        { provide: ErrorProvider, useClass: NotAuthenticatedErrorProvider, multi: true },
-        { provide: Authorization, useClass: AuthorizationService },
-        { provide: Authentication, useClass: AuthenticationService }
-    ],
-    exports: [
-        LogoutDirective,
-        UserDirective,
-        LoginSuccessComponent,
-        HasRoleDirective,
-        HideWhileLoginComponent
-    ]
+  imports: [CommonModule, RouterModule, HttpClientModule],
+  declarations: [
+    LogoutDirective,
+    UserDirective,
+    LoginSuccessComponent,
+    HasRoleDirective,
+    HideWhileLoginComponent
+  ],
+  providers: [
+    AuthorizationService,
+    AuthenticationService,
+    {
+      provide: ErrorProvider,
+      useClass: NotAuthenticatedErrorProvider,
+      multi: true
+    },
+    { provide: Authorization, useClass: AuthorizationService },
+    { provide: Authentication, useClass: AuthenticationService }
+  ],
+  exports: [
+    LogoutDirective,
+    UserDirective,
+    LoginSuccessComponent,
+    HasRoleDirective,
+    HideWhileLoginComponent
+  ]
 })
 export class SecurityModule {
-
-    /**
-     * forRoot method
-     * @public
-     * @static
-     * @returns ModuleWithProviders
-     */
-    static forRoot(config: AuthConfig): ModuleWithProviders {
-        return { 
-            ngModule: SecurityModule, 
-            providers: [
-                { provide: AUTH_CONFIG, useValue: config },
-                config.tokenStorageIndex ? 
-                  [ 
-                    { provide: Token, useClass: JWTTokenService },
-                    { provide: HTTP_INTERCEPTORS, useClass: JWTAuthInterceptor, multi: true }
-                  ] : []
+  /**
+   * forRoot method
+   * @public
+   * @static
+   * @returns ModuleWithProviders
+   */
+  static forRoot(config: AuthConfig): ModuleWithProviders {
+    return {
+      ngModule: SecurityModule,
+      providers: [
+        { provide: AUTH_CONFIG, useValue: config },
+        config.tokenStorageIndex
+          ? [
+              { provide: Token, useClass: JWTTokenService },
+              {
+                provide: HTTP_INTERCEPTORS,
+                useClass: JWTAuthInterceptor,
+                multi: true
+              }
             ]
-        };
-    }
-
+          : []
+      ]
+    };
+  }
 }

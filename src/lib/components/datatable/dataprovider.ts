@@ -8,7 +8,7 @@ export interface DataProvider {
    * @param {any} query
    * @returns void
    */
-  load(query ?: any): void;
+  load(query?: any): void;
 
   /**
    * reset method

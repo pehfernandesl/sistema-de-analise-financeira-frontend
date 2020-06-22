@@ -6,14 +6,12 @@ import { Extrato } from './extrato';
 @Component({
   selector: 'safi-extrato-lista',
   templateUrl: './extrato-lista.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class ExtratoListaComponent implements OnInit {
-
   public extratos: Extrato[];
 
-  constructor(private extratoService: ExtratoService) { }
+  constructor(private extratoService: ExtratoService) {}
 
   ngOnInit(): void {
     this.refreshExtratos();
@@ -28,5 +26,4 @@ export class ExtratoListaComponent implements OnInit {
   public getExtratos(): Extrato[] {
     return this.extratos;
   }
-
 }

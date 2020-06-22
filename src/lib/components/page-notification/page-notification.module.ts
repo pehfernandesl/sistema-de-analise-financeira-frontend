@@ -20,5 +20,4 @@ import { ToastModule } from 'primeng/toast';
     }
   ]
 })
-export class PageNotificationModule {
-}
+export class PageNotificationModule {}

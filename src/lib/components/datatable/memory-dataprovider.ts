@@ -6,21 +6,19 @@ import { DatatableComponent } from './datatable.component';
  * @class
  */
 export class MemoryDataProvider implements DataProvider {
-
   /**
    * constructor method
    * @param {DatatableComponent} component
    * @constructor
    */
-  constructor(private component: DatatableComponent) {
-  }
+  constructor(private component: DatatableComponent) {}
 
   /**
    * load method
    * @param {any} query
    * @returns void
    */
-  load(query ?: any): void {
+  load(query?: any): void {
     this.component.pDatatableComponent.reset();
 
     for (let prop in query) {
@@ -28,11 +26,7 @@ export class MemoryDataProvider implements DataProvider {
       if (query[prop] instanceof Array) {
         matchMode = 'in';
       }
-      this.component.pDatatableComponent.filter(
-        query[prop],
-        prop,
-        matchMode
-      );
+      this.component.pDatatableComponent.filter(query[prop], prop, matchMode);
     }
 
     this.component.pDatatableComponent.globalFilterFields = query;

@@ -33,10 +33,9 @@ export class LocalStorageService {
 
   public storeActiveUserEmail(email: string): void {
     localStorage[STORAGE_KEYS.ACTIVE_USER_EMAIL] = JSON.stringify({ email });
-
   }
 
-  public clearUser(): void{
+  public clearUser(): void {
     localStorage.removeItem(STORAGE_KEYS.ACTIVE_USER_EMAIL);
     localStorage.removeItem(STORAGE_KEYS.USER_TOKEN);
   }

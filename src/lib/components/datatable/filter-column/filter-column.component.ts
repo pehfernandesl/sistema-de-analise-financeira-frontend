@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChange
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -7,7 +15,6 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './filter-column.component.html'
 })
 export class FilterColumn implements OnChanges, OnInit {
-
   @Input() listaOriginal: any[] = [];
 
   @Input() lista: any[] = [];
@@ -36,12 +43,11 @@ export class FilterColumn implements OnChanges, OnInit {
   private debouncer: Subject<any> = new Subject<any>();
   private listaFields: any[] = [];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.debouncer
-      .pipe(debounceTime((this.tableType === 'memory') ? 300 : 1000))
+      .pipe(debounceTime(this.tableType === 'memory' ? 300 : 1000))
       .subscribe((value) => this.outputEvent.emit(value));
 
     this.template = `filter_${this.filterType}`;
@@ -54,7 +60,10 @@ export class FilterColumn implements OnChanges, OnInit {
   }
 
   checkChanges(changes: { [propName: string]: SimpleChange }, property) {
-    return changes[property] && changes[property].previousValue != changes[property].currentValue;
+    return (
+      changes[property] &&
+      changes[property].previousValue != changes[property].currentValue
+    );
   }
 
   filtrar(event) {
@@ -63,16 +72,18 @@ export class FilterColumn implements OnChanges, OnInit {
 
   preencherFields() {
     this.listaFields = [];
-    this.listaOriginal.filter(pi => pi[this.field] !== null).forEach(row => {
-      let item = { label: row[this.field], value: row[this.field] };
-      if (!this.verificarSeExisteField(item)) {
-        this.listaFields.push(item);
-      }
-    });
+    this.listaOriginal
+      .filter((pi) => pi[this.field] !== null)
+      .forEach((row) => {
+        let item = { label: row[this.field], value: row[this.field] };
+        if (!this.verificarSeExisteField(item)) {
+          this.listaFields.push(item);
+        }
+      });
   }
 
   verificarSeExisteField(field) {
-    return this.listaFields.some(item => {
+    return this.listaFields.some((item) => {
       return item.value == field.value;
     });
   }
@@ -84,5 +95,4 @@ export class FilterColumn implements OnChanges, OnInit {
 
     return this.listaFields;
   }
-
 }

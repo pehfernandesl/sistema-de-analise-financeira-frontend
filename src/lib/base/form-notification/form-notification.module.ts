@@ -12,23 +12,21 @@ import { FormNotificationComponentSuperclass } from './components/form-notificat
  * @module
  */
 @NgModule({
-    imports: [
-        CommonModule
-    ],
-    declarations: [ FormNotificationComponentSuperclass ],
-    exports: [ FormNotificationComponentSuperclass],
-    providers: [
-        FormNotificationService,
-        {
-            provide: ErrorProvider,
-            useClass: FormNotificationErrorProvider,
-            multi: true,
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: FormNotificationInterceptor,
-            multi: true,
-        },
-    ],
+  imports: [CommonModule],
+  declarations: [FormNotificationComponentSuperclass],
+  exports: [FormNotificationComponentSuperclass],
+  providers: [
+    FormNotificationService,
+    {
+      provide: ErrorProvider,
+      useClass: FormNotificationErrorProvider,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FormNotificationInterceptor,
+      multi: true
+    }
+  ]
 })
-export class FormNotificationBaseModule { }
+export class FormNotificationBaseModule {}

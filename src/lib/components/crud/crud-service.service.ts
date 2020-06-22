@@ -1,10 +1,11 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export const CRUD_SERVICE = new InjectionToken<CrudService<any, any>>('CRUD_SERVICE');
+export const CRUD_SERVICE = new InjectionToken<CrudService<any, any>>(
+  'CRUD_SERVICE'
+);
 
 export interface CrudService<I, E> {
-
   uri: string;
 
   save(entidade: E): Observable<E>;
@@ -16,5 +17,4 @@ export interface CrudService<I, E> {
   delete(id: I): Observable<E>;
 
   findAll(entidade: E): Observable<E>;
-
 }

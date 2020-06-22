@@ -10,14 +10,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DatatableService {
-
   /**
    * constructor method
    * @constructor
    * @param {HttpClient} http
    */
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   /**
    * search method
@@ -28,7 +26,13 @@ export class DatatableService {
    * @param {any} query
    * @return Observable
    */
-  search(event: LazyLoadEvent, url: string, rows: number, orderInSort: boolean, query?: any) {
+  search(
+    event: LazyLoadEvent,
+    url: string,
+    rows: number,
+    orderInSort: boolean,
+    query?: any
+  ) {
     let page = 0;
     if (event !== undefined && event.first > 0) {
       page = Math.floor(event.first / rows);
@@ -45,9 +49,7 @@ export class DatatableService {
       }
     } else {
       if (event.sortField !== undefined) {
-        params = params
-          .set('sort', event.sortField)
-          .set('order', order);
+        params = params.set('sort', event.sortField).set('order', order);
       }
     }
 
@@ -56,8 +58,12 @@ export class DatatableService {
     }
 
     if ('object' === typeof query) {
-      Object.keys(query).forEach(key => params = params.set(key, query[key]));
+      Object.keys(query).forEach(
+        (key) => (params = params.set(key, query[key]))
+      );
     }
-    return this.http.get(`${url}?${params.toString()}`, { observe: 'response' });
+    return this.http.get(`${url}?${params.toString()}`, {
+      observe: 'response'
+    });
   }
 }

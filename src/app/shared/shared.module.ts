@@ -25,7 +25,6 @@ import { AuthInterceptorProvider } from '../interceptors/auth.interceptor';
     HttpClientModule,
     PRIMENG_IMPORTS
   ],
-  providers: [LocalStorageService, AuthService, AuthInterceptorProvider
-  ]
+  providers: [LocalStorageService, AuthService, AuthInterceptorProvider]
 })
 export class SharedModule {}

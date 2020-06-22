@@ -5,7 +5,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './datatable-button.component.html'
 })
 export class DatatableButtonComponent {
-
   @Input()
   icon: string;
 

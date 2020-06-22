@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.loginForm.value).subscribe(
       (resposta) => {
-        if (resposta.token){
+        if (resposta.token) {
           this.localStorageService.storeToken(resposta.token);
           this.localStorageService.storeActiveUserEmail(resposta.email);
           this.router.navigate(['']);

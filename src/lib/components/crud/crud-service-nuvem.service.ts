@@ -3,9 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 export class CrudServiceNuvem<I, E> implements CrudService<I, E> {
-
-  constructor(public uri: string, protected http: HttpClient) {
-  }
+  constructor(public uri: string, protected http: HttpClient) {}
 
   save(entity: E): Observable<E> {
     return this.http.post<E>(this.uri, entity);
@@ -27,10 +25,9 @@ export class CrudServiceNuvem<I, E> implements CrudService<I, E> {
     let params = new HttpParams();
 
     for (let field in entity) {
-      params = params.append(field, <any> entity[field]);
+      params = params.append(field, <any>entity[field]);
     }
 
     return this.http.get<E>(`${this.uri}`, { params: params });
   }
-
 }

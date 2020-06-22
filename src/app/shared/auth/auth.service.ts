@@ -12,7 +12,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AuthService {
   private readonly api = environment.auth.tokenValidationUrl;
 
-  constructor(private httpClient: HttpClient, private localStorageService: LocalStorageService) {}
+  constructor(
+    private httpClient: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {}
 
   public isAuthenticated(): boolean {
     const token = this.localStorageService.getTokenFromStorage();

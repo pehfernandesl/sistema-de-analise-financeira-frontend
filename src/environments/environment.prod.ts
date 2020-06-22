@@ -12,6 +12,6 @@ export const environment = {
     storage: localStorage,
     tokenStorageIndex: 'token',
     userStorageIndex: 'user',
-    loginSuccessRoute: '',
-  },
+    loginSuccessRoute: ''
+  }
 };

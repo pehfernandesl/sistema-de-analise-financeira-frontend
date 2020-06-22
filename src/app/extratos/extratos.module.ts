@@ -6,13 +6,14 @@ import { routes } from './extratos.routes';
 import { RouterModule } from '@angular/router';
 import { ExtratoListaComponent } from './extrato-lista.component';
 import { ExtratoFormComponent } from './extrato-form.component';
+import { RelatorioComponent } from './relatorio/relatorio.component';
 
 @NgModule({
-  declarations: [ExtratoListaComponent, ExtratoFormComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    RouterModule.forChild(routes)
-  ]
+  declarations: [
+    ExtratoListaComponent,
+    ExtratoFormComponent,
+    RelatorioComponent
+  ],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)]
 })
-export class ExtratosModule { }
+export class ExtratosModule {}

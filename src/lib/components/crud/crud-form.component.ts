@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './crud-form.component.html'
 })
 export class CrudFormComponent implements OnInit {
-
   @Input() form: FormGroup;
 
   @Input() service: CrudService<any, any>;
@@ -17,8 +16,7 @@ export class CrudFormComponent implements OnInit {
 
   listRoute: string = '../../list';
 
-  constructor(private route: ActivatedRoute) {
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -40,5 +38,4 @@ export class CrudFormComponent implements OnInit {
       }
     });
   }
-
 }

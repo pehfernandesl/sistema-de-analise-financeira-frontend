@@ -8,15 +8,8 @@ import { ClipboardService } from './clipboard.service';
  */
 @NgModule({
   imports: [],
-  declarations: [
-    ClipboardDirective,
-  ],
-  providers: [
-    ClipboardService
-  ],
-  exports: [
-    ClipboardDirective,
-  ]
+  declarations: [ClipboardDirective],
+  providers: [ClipboardService],
+  exports: [ClipboardDirective]
 })
-export class ClipboardModule {
-}
+export class ClipboardModule {}

@@ -4,17 +4,17 @@
  * @abstract
  */
 export abstract class ErrorProvider {
-    /**
-     * Metodo responsável pela identificação de erros
-     * @param {Error} error
-     * @returns Boolean
-     */
-    abstract shouldHandle(error: Error): Boolean;
+  /**
+   * Metodo responsável pela identificação de erros
+   * @param {Error} error
+   * @returns Boolean
+   */
+  abstract shouldHandle(error: Error): Boolean;
 
-    /**
-     * Metodo pela adição de erros
-     * @param {Error} error
-     * @returns void
-     */
-    abstract handle(error: Error): void;
+  /**
+   * Metodo pela adição de erros
+   * @param {Error} error
+   * @returns void
+   */
+  abstract handle(error: Error): void;
 }

@@ -2,7 +2,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BlockUIModule, ButtonModule, PaginatorModule, ProgressSpinnerModule, SplitButtonModule, TooltipModule } from 'primeng';
+import {
+  BlockUIModule,
+  ButtonModule,
+  PaginatorModule,
+  ProgressSpinnerModule,
+  SplitButtonModule,
+  TooltipModule
+} from 'primeng';
 
 import { TableModule } from 'primeng/table';
 
@@ -34,13 +41,13 @@ import { Column } from './p-column.directive';
     FilterColumnModule,
     ShowColumnModule
   ],
-  declarations: [
-    DatatableComponent,
-    DatatableButtonComponent,
-    Column
-  ],
+  declarations: [DatatableComponent, DatatableButtonComponent, Column],
   providers: [
-    { provide: DatatableService, useClass: DatatableService, deps: [HttpClient] },
+    {
+      provide: DatatableService,
+      useClass: DatatableService,
+      deps: [HttpClient]
+    },
     DataProviderFactory
   ],
   exports: [
@@ -51,5 +58,4 @@ import { Column } from './p-column.directive';
     Column
   ]
 })
-export class DatatableModule {
-}
+export class DatatableModule {}

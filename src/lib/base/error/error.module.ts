@@ -11,26 +11,23 @@ import { HttpGenericErrorService } from './services/http-generic-error.service';
  * @module
  */
 @NgModule({
-    declarations: [],
-    imports: [
-        CommonModule
-    ],
-    providers: [
-        {
-            provide: ErrorProvider,
-            useClass: HttpGenericErrorService,
-            multi: true
-        },
-        {
-            provide: ErrorProvider,
-            useClass: HttpApplicationProblemErrorService,
-            multi: true
-        },
-        {
-            provide: ErrorHandler,
-            useClass: ErrorService,
-        },
-    ]
+  declarations: [],
+  imports: [CommonModule],
+  providers: [
+    {
+      provide: ErrorProvider,
+      useClass: HttpGenericErrorService,
+      multi: true
+    },
+    {
+      provide: ErrorProvider,
+      useClass: HttpApplicationProblemErrorService,
+      multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: ErrorService
+    }
+  ]
 })
-export class ErrorModule {
-}
+export class ErrorModule {}

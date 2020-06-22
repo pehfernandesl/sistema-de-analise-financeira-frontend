@@ -1,17 +1,14 @@
-
 /**
  * Classe abstrata para serviço de autorização
  * @class
  */
 export abstract class Authorization {
-
-    /**
-     * Métodos responsável por identificar as regras de acesso
-     * @public
-     * @abstract
-     * @param {any} role
-     * @returns boolean
-     */
-    abstract hasRole(role: any): boolean;
-
+  /**
+   * Métodos responsável por identificar as regras de acesso
+   * @public
+   * @abstract
+   * @param {any} role
+   * @returns boolean
+   */
+  abstract hasRole(role: any): boolean;
 }

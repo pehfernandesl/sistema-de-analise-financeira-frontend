@@ -7,5 +7,4 @@ import { FormNotificationComponentSuperclass } from '../../base/form-notificatio
   selector: '[form-notification]',
   templateUrl: 'form-notification.component.html'
 })
-export class FormNotificationComponent extends FormNotificationComponentSuperclass {
-}
+export class FormNotificationComponent extends FormNotificationComponentSuperclass {}

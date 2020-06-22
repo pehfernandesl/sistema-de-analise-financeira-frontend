@@ -14,8 +14,7 @@ export class BlockUiComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private service: BlockUiService) {
-  }
+  constructor(private service: BlockUiService) {}
 
   ngOnInit() {
     this.subscription = this.service.loaderStatus.subscribe(

@@ -1,4 +1,4 @@
-export interface Extrato{
+export interface Extrato {
   id?: {
     mesAno?: Date;
     tpBanco: number;
