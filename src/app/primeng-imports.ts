@@ -1,13 +1,15 @@
 import { ButtonModule } from 'primeng/button';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CalendarModule } from 'primeng/calendar';
-import { InputNumberModule } from 'primeng/inputnumber';
+import { FileUploadModule } from 'primeng/fileupload';
 import { InputMaskModule } from 'primeng';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 export const PRIMENG_IMPORTS: any = [
   ScrollPanelModule,
   ButtonModule,
   CalendarModule,
   InputNumberModule,
-  InputMaskModule
+  InputMaskModule,
+  FileUploadModule
 ];

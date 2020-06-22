@@ -25,8 +25,8 @@
           </div>
           <div class="ui-g-12">
             <span class="ui-float-label">
-              <input pInputText formControlName="arquivoBase64" />
-              <label>Arquivo</label>
+              <p-fileUpload (onSelect)="aoSelecionarOFX($event)" chooseLabel="Adicionar Arquivo OFX" mode="basic" customUpload="false" showUploadButton="false" showCancelButton="false"></p-fileUpload>
+              <!-- <input pInputText formControlName="arquivoBase64" /> -->
             </span>
           </div>
           <div class="ui-g-4">
