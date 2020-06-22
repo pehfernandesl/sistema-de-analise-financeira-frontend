@@ -18,4 +18,8 @@ export class DespesaService {
       params: new HttpParams().set('sort', 'id')
     });
   }
+
+  public create(despesa: Despesa): Observable<Despesa> {
+    return this.httpClient.post<Despesa>(this.api, despesa);
+  }
 }

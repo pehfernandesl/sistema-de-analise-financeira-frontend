@@ -4,9 +4,11 @@ import { CommonModule } from '@angular/common';
 
 import { routes } from './extratos.routes';
 import { RouterModule } from '@angular/router';
+import { ExtratoListaComponent } from './extrato-lista.component';
+import { ExtratoFormComponent } from './extrato-form.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ExtratoListaComponent, ExtratoFormComponent],
   imports: [
     CommonModule,
     SharedModule,

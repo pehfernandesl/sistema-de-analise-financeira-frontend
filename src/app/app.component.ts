@@ -20,7 +20,33 @@ enum MenuOrientation {
 }
 @Component({
   selector: 'safi-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styles: [
+    `
+      .gradient {
+        background: rgb(143, 255, 62);
+        background: -moz-linear-gradient(
+          328deg,
+          rgba(143, 255, 62, 1) 11%,
+          rgba(66, 128, 29, 1) 49%,
+          rgba(12, 54, 10, 1) 100%
+        );
+        background: -webkit-linear-gradient(
+          328deg,
+          rgba(143, 255, 62, 1) 11%,
+          rgba(66, 128, 29, 1) 49%,
+          rgba(12, 54, 10, 1) 100%
+        );
+        background: linear-gradient(
+          328deg,
+          rgba(143, 255, 62, 1) 11%,
+          rgba(66, 128, 29, 1) 49%,
+          rgba(12, 54, 10, 1) 100%
+        );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8fff3e",endColorstr="#0c360a",GradientType=1);
+      }
+    `
+  ]
 })
 export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
   layoutCompact = true;
@@ -77,13 +103,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
       {
         label: 'Extratos Bancários',
         icon: 'dashboard',
-        items: [
-          {
-            label: 'Importar Extrato OFX',
-            icon: 'dashboard',
-            routerLink: ['']
-          }
-        ]
+        routerLink: ['/extratos']
       },
       {
         label: 'Lançamentos',

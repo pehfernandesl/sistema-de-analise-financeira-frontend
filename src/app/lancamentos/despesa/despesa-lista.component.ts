@@ -19,7 +19,9 @@ export class DespesaListaComponent implements OnInit {
   }
 
   public refreshDespesas(): void {
-    this.despesaService.getDespesas().subscribe(despesas => this.despesas = despesas);
+    this.despesaService
+      .getDespesas()
+      .subscribe((despesas) => (this.despesas = despesas));
   }
 
   public getDespesas(): Despesa[] {
