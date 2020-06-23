@@ -45,7 +45,9 @@ export class ExtratoFormComponent implements OnInit {
     this.extratoService
       .salvar({ ...this.extratoForm.value, arquivoBase64: this.base64 })
       .subscribe((resposta) => {
-        console.log('Ok');
+        this.pageNotificationService.addCreateMsg(
+          'Extrato foi salvo com sucesso!'
+        );
       });
   }
 }
