@@ -4,6 +4,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { InputMaskModule } from 'primeng';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { TableModule } from 'primeng/table';
 
 export const PRIMENG_IMPORTS: any = [
   ScrollPanelModule,
@@ -11,5 +12,6 @@ export const PRIMENG_IMPORTS: any = [
   CalendarModule,
   InputNumberModule,
   InputMaskModule,
-  FileUploadModule
+  FileUploadModule,
+  TableModule
 ];

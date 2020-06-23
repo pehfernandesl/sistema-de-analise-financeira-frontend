@@ -1,0 +1,89 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <!-- <p-table [value]= "relatorios">
+            <ng-template pTemplate="header">
+              <tr>
+                <th >Total ($)</th>
+                <th >Total de Saídas ($)</th>
+                <th >Total de Entradas ($)</th>
+                <th >Dia com maior moviementação geral</th>
+                <th >Dia com maior moviementação positiva</th>
+                <th >Data Com maior moviementação negativa</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-relatorio>
+              <tr>
+                <td>{{relatorio.total}}</td>
+                <td>{{relatorio.totalSaida}}</td>
+                <td>{{relatorio.totalEntrada}}</td>
+                <td>{{relatorio.dataMaisMovimento | date:'dd/MM/yyyy'}}</td>
+                <td>{{relatorio.dataMaisMovimentoPositivo | date:'dd/MM/yyyy'}}</td>
+                <td>{{relatorio.dataMaisMovimentoNegativo | date:'dd/MM/yyyy'}}</td>
+              </tr>
+            </ng-template>
+          </p-table> -->
+
+          <div class="ui-g-12">
+            <label >Total: {{relatorio.total}}</label>
+          </div>
+          <div class="ui-g-12">
+            <label >Total de entradas: {{relatorio.totalEntrada}}</label>
+          </div>
+          <div class="ui-g-12">
+            <label >Total de saídas: {{relatorio.totalSaida}}</label>
+          </div>
+          <div class="ui-g-12">
+            <label >Dia com maior moviementação geral: {{relatorio.dataMaisMovimento}}</label>
+          </div>
+          <div class="ui-g-12">
+            <label >Dia com maior moviementação positiva: {{relatorio.dataMaisMovimentoPositivo}}</label>
+          </div>
+          <div class="ui-g-12">
+            <label >Dia com maior moviementação negativa: {{relatorio.dataMaisMovimentoNegativo}}</label>
+          </div>
+
+          <!-- <table >
+            <thead>
+          <tr>
+            <th >Total ($)</th>
+            <th >Total de Saídas ($)</th>
+            <th >Total de Entradas ($)</th>
+            <th >Dia com maior moviementação geral</th>
+            <th >Dia com maior moviementação positiva</th>
+            <th >Data Com maior moviementação negativa</th>
+           </tr>
+          </thead>
+          <tr >
+            <td>{{relatorio.total}}</td>
+            <td>{{relatorio.totalSaida}}</td>
+            <td>{{relatorio.totalEntrada}}</td>
+            <td>{{relatorio.dataMaisMovimento | date:'dd/MM/yyyy'}}</td>
+            <td>{{relatorio.dataMaisMovimentoPositivo | date:'dd/MM/yyyy'}}</td>
+            <td>{{relatorio.dataMaisMovimentoNegativo | date:'dd/MM/yyyy'}}</td>
+          </tr>
+        </table> -->
+
+          <!-- <div class="ui-g-12">
+            <h2>Relatório de operações</h2>
+            <safi-datatable
+              type="memory"
+              [value]="getRelatorio().operacoes"
+              dis
+              disableDelete="false"
+              disableEdit="true"
+              disableView="true"
+            >
+              <p-column header="Tipo de Operação" field="tpOperacao"></p-column>
+              <p-column header="Valor" field="valor"></p-column>
+              <p-column header="%" field="percent"></p-column>
+            </safi-datatable>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
