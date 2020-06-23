@@ -24,14 +24,14 @@
             </p-column>
             <p-column header="Banco" field="id">
               <ng-template let-data="rowData" pTemplate="body">
-                {{ data['id']?.tpBanco  }}
+                {{ data['id']?.tpBanco | tpBanco  }}
               </ng-template>
             </p-column>
-            <p-column header="Data de Inclusão" field="dataInclusao">
-              <ng-template let-data="rowData">
-                {{ data | date: 'DD/MM/yyyy'  }}
+            <!-- <p-column header="Data de Inclusão"  field="dataInclusao">
+              <ng-template let-data="rowData" pTemplate="body">
+                {{ data?.dataInclusao |  date: 'dd/MM/yyyy' }}
               </ng-template>
-            </p-column>
+            </p-column> -->
           </safi-datatable>
         </div>
       </div>

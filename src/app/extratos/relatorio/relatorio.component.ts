@@ -17,10 +17,14 @@ import { LocaleSettings } from 'primeng';
       </div>
       <div class="ui-g-12">
           <span class="ui-float-label">
-            <p-calendar
-              [locale]="calendarLocale"
-              formControlName="mes"
-            ></p-calendar>
+          <p-calendar
+            [locale]="calendarLocale"
+            view="month"
+            dateFormat="M/yy"
+            formControlName="mesAno"
+            [yearNavigator]="true"
+            yearRange="1900:2020"
+          ></p-calendar>
             <label>Escolha o mês</label>
           </span>
       </div >
@@ -44,7 +48,7 @@ export class RelatorioComponent implements OnInit {
 
 
   public relatorioForm = this.fb.group({
-    mes: [null, Validators.required]
+    mesAno: [null, Validators.required]
   });
   constructor(
     private fb: FormBuilder,
@@ -55,7 +59,8 @@ export class RelatorioComponent implements OnInit {
   ngOnInit(): void {}
 
   public buscar(){
-    const dataMes: Date = this.relatorioForm.controls.mes.value;
-    this.router.navigate(['relatorios/show', {dataMes}] );
+    const dataMes: Date = this.relatorioForm.controls.mesAno.value;
+    const dateParam = `${dataMes.getMonth() + 1}.${dataMes.getFullYear()}`;
+    this.router.navigate([`relatorios/show/${dateParam}` ] );
   }
 }

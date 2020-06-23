@@ -6,13 +6,13 @@
           <div class="ui-g-8">
             <h2>Relatório Geral</h2>
             <p-card>
-              Total: <label>{{ relatorio?.total }}</label>
+              Total: <label>{{ relatorio?.total | currency: 'R$' }}</label>
             </p-card>
             <p-card>
-                Total de Entrada: <label>{{ relatorio?.totalEntrada }}</label>
+                Total de Entrada: <label>{{ relatorio?.totalEntrada | currency: 'R$'}}</label>
             </p-card>
             <p-card>
-              Total de Saídas: <label>{{ relatorio?.totalSaida }}</label>
+              Total de Saídas: <label>{{ relatorio?.totalSaida | currency: 'R$'}}</label>
             </p-card>
             <p-card>
               Dia com maior movimentação geral: <label>{{ relatorio?.dataMaisMovimento  | date:'dd/MM/yyyy'}}</label>
@@ -34,8 +34,16 @@
               disableEdit="true"
               disableView="true"
             >
-              <p-column header="Tipo de Operação" field="tpOperacao"></p-column>
-              <p-column header="Valor" field="valor"></p-column>
+              <p-column header="Tipo de Operação" field="tpOperacao" >
+                <ng-template let-data="rowData" pTemplate="body">
+                  {{ data['tpOperacao'] | tpOperacao }}
+                </ng-template>
+              </p-column>
+              <p-column header="Valor" field="valor">
+                <ng-template let-data="rowData" pTemplate="body">
+                  {{ data['valor'] | currency: 'R$' }}
+                </ng-template>
+              </p-column>
               <p-column header="%" field="percent"></p-column>
             </safi-datatable>
           </div>

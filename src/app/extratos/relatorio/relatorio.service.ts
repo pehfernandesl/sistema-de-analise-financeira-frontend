@@ -1,6 +1,6 @@
 import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Relatorio } from './relatorio';
 
@@ -8,10 +8,11 @@ import { Relatorio } from './relatorio';
   providedIn: 'root'
 })
 export class RelatorioService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  public getRelatorio(): Observable<Relatorio> {
-    return this.http.get <Relatorio>(`${environment.apiUrl}/relatorios?mes=7`);
+  public getRelatorio(mes: string): Observable<Relatorio> {
+    return this.http.get<Relatorio>(`${environment.apiUrl}/relatorios`, {
+      params: new HttpParams().set('mes', mes)
+    });
   }
 }

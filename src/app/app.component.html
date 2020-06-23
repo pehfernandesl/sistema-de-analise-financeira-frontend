@@ -35,9 +35,7 @@
       <breadcrumb *ngIf="authService.isAuthenticated()"></breadcrumb>
 
       <div class="layout-content">
-        <safi-page-notification
-          *ngIf="authService.isAuthenticated()"
-        ></safi-page-notification>
+        <safi-page-notification></safi-page-notification>
 
         <router-outlet></router-outlet>
 

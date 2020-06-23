@@ -21,7 +21,7 @@ export const routes: Routes = [
     data: { breadcrumb: 'Relatórios' }
   },
   {
-    path: 'relatorios/show',
+    path: 'relatorios/show/:mes',
     component: RelatorioListaComponent,
     data: { breadcrumb: 'Relatório Mensal' }
   }
