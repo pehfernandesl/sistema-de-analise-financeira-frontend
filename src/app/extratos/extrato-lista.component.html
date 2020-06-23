@@ -14,9 +14,21 @@
             <button pButton label="Pesquisar" icon="ui-icon-search"></button>
           </div> -->
           <div class="ui-g-5">
-            <button pButton label="Cadastrar" [routerLink]="['/extratos/new']" icon="ui-icon-add"></button>
+            <button
+              pButton
+              label="Cadastrar"
+              [routerLink]="['/extratos/new']"
+              icon="ui-icon-add"
+            ></button>
           </div>
-          <safi-datatable type="memory" [value]="getExtratos()" disableDelete="false" disableEdit="true" disableView="true">
+          <safi-datatable
+            type="memory"
+            [value]="getExtratos()"
+            disableDelete="false"
+            disableEdit="true"
+            disableView="true"
+            (buttonClick)="onDatabaseButtonClick($event)"
+          >
             <p-column header="Data" field="id">
               <ng-template let-data="rowData" pTemplate="body">
                 {{ data['id']?.mesAno | date: 'MM/yyyy' }}
@@ -24,7 +36,7 @@
             </p-column>
             <p-column header="Banco" field="id">
               <ng-template let-data="rowData" pTemplate="body">
-                {{ data['id']?.tpBanco | tpBanco  }}
+                {{ data['id']?.tpBanco | tpBanco }}
               </ng-template>
             </p-column>
             <!-- <p-column header="Data de Inclusão"  field="dataInclusao">
@@ -32,12 +44,15 @@
                 {{ data?.dataInclusao |  date: 'dd/MM/yyyy' }}
               </ng-template>
             </p-column> -->
+            <safi-datatable-button
+              name="gerar-relatorio"
+              icon="add"
+              tooltip="Mostrar Relatório"
+              class="ui-button-info"
+            ></safi-datatable-button>
           </safi-datatable>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-

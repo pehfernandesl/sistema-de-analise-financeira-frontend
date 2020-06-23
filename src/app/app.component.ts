@@ -108,12 +108,12 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             label: 'Extratos',
             icon: 'description',
             routerLink: ['/extratos']
-          },
-          {
-            label: 'Relatório',
-            icon: 'equalizer',
-            routerLink: ['/extratos/relatorios']
           }
+          // {
+          //   label: 'Relatório',
+          //   icon: 'equalizer',
+          //   routerLink: ['/extratos/relatorios']
+          // }
         ]
       },
       {
