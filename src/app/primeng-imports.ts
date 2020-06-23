@@ -1,4 +1,5 @@
 import {
+  ChartModule,
   DropdownModule,
   InputTextareaModule,
   ProgressSpinnerModule
@@ -24,5 +25,6 @@ export const PRIMENG_IMPORTS: any = [
   InputTextareaModule,
   CardModule,
   DropdownModule,
-  ProgressSpinnerModule
+  ProgressSpinnerModule,
+  ChartModule
 ];

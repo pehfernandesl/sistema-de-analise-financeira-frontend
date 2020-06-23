@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    data: { breadcrumb: 'DashBoard' },
+    data: { breadcrumb: 'Home' },
     canActivate: [AuthGuard]
   },
   {

@@ -1,24 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-const OPERACAO_LOOKUP_TABLE = {
-  value_1_: 'Saque',
-  value_2_: 'Compra com Cartão',
-  value_3_: 'Pagamentos',
-  value_4_: 'TED',
-  value_5_: 'DOC',
-  value_6_: 'Tarifa',
-  value_7_: 'Remuneração',
-  value_8_: 'Outros',
-  value_9_: 'Depósitos'
+export const OPERACAO_LOOKUP_TABLE = {
+  value_1_: { label: 'Saque', color: '#FF0000' },
+  value_2_: { label: 'Compra com Cartão', color: '#00FF00' },
+  value_3_: { label: 'Pagamentos', color: '#0000FF' },
+  value_4_: { label: 'TED', color: '#A0FF01' },
+  value_5_: { label: 'DOC', color: '#F0F0F0' },
+  value_6_: { label: 'Tarifa', color: '#FF00FF' },
+  value_7_: { label: 'Remuneração', color: '#FFFFFF' },
+  value_8_: { label: 'Outros', color: '#000000' },
+  value_9_: { label: 'Depósitos', color: '#808080' }
 };
 
 @Pipe({
   name: 'tpOperacao'
 })
 export class TpOperacaoPipe implements PipeTransform {
-
   transform(value: number, ...args: any[]): string {
-    return OPERACAO_LOOKUP_TABLE[`value_${value}_`];
+    return OPERACAO_LOOKUP_TABLE[`value_${value}_`].label;
   }
-
 }

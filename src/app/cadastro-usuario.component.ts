@@ -4,10 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { CALENDAR_LOCALE } from '@components/crud/components/calendar/calendar-locale';
 import { LocaleSettings } from 'primeng';
-import { PageNotificationComponent } from '@components/page-notification/page-notification.component';
 import { PageNotificationService } from '@components/page-notification/page-notification.service';
 import { Router } from '@angular/router';
-import { SafiErrorHttpResponse } from './err/error-httpresponse';
 import { environment } from 'src/environments/environment';
 
 @Component({
