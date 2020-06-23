@@ -3,25 +3,11 @@
     <div class="card card-w-title">
       <h1>Minhas Receitas</h1>
       <div class="ui-g">
-        <div class="ui-g-12 ui-md-12 ui-fluid">
-          <span class="md-inputfield" style="margin-top: 5px;">
-            <input
-              pInputText
-              type="text"
-              class="ui-inputtext"
-              name="descricao"
-            />
-            <label>Descrição da Receita</label>
-          </span>
-        </div>
         <div class="ui-g-12">
-          <div class="ui-g-5">
-            <button pButton label="Pesquisar" icon="ui-icon-search"></button>
-          </div>
           <div class="ui-g-5">
             <button
               pButton
-              label="Cadastrar"
+              label="Nova Receita"
               [routerLink]="['/receitas/new']"
               icon="ui-icon-add"
             ></button>
@@ -39,7 +25,7 @@
             <p-column header="Valor R$" field="valor"></p-column>
             <p-column header="Data Lançamento" field="dataLancamento">
               <ng-template let-data="rowData">
-                {{ data | date: 'dd/MM/yyyy' }}
+                {{ data | date: 'dd/mm/yy' }}
               </ng-template>
             </p-column>
             <safi-datatable-button

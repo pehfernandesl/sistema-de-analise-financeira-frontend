@@ -1,7 +1,9 @@
-import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
-import { ReceitaService } from './receita.service';
+
 import { PageNotificationService } from '@components/page-notification/page-notification.service';
+import { Receita } from './receita';
+import { ReceitaService } from './receita.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'safi-receita-lista',
@@ -17,8 +19,11 @@ export class ReceitaListaComponent implements OnInit {
     this.refreshReceitas();
   }
 
-  public onDatabaseButtonClick(event): void {
-    console.log(event);
+  public onDatabaseButtonClick(event: {
+    button: string;
+    selection: Receita;
+  }): void {
+    this.receitaService.delete(event.selection);
   }
 
   public refreshReceitas(): void {
