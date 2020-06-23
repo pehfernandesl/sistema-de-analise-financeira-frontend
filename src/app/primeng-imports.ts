@@ -1,4 +1,8 @@
-import { DropdownModule, InputTextareaModule } from 'primeng';
+import {
+  DropdownModule,
+  InputTextareaModule,
+  ProgressSpinnerModule
+} from 'primeng';
 
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
@@ -19,5 +23,6 @@ export const PRIMENG_IMPORTS: any = [
   TableModule,
   InputTextareaModule,
   CardModule,
-  DropdownModule
+  DropdownModule,
+  ProgressSpinnerModule
 ];

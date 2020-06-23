@@ -1,8 +1,10 @@
-import { LocalStorageService } from './shared/local-storage/local-storage.service';
-import { AuthService } from './shared/auth/auth.service';
-import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+
+import { AuthService } from './shared/auth/auth.service';
+import { LocalStorageService } from './shared/local-storage/local-storage.service';
+import { LoginService } from './login.service';
+import { PageNotificationService } from '@components/page-notification/page-notification.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,8 +13,10 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class LoginComponent implements OnInit {
+  isLoading = false;
+
   loginForm = this.fb.group({
-    email: ['', Validators.required,],
+    email: ['', Validators.required],
     senha: ['', Validators.required]
   });
   constructor(
@@ -20,6 +24,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private authService: AuthService,
     private localStorageService: LocalStorageService,
+    private pageNotificationService: PageNotificationService,
     private router: Router
   ) {}
 
@@ -32,11 +37,19 @@ export class LoginComponent implements OnInit {
           this.localStorageService.storeToken(resposta.token);
           this.localStorageService.storeActiveUserEmail(resposta.email);
           this.router.navigate(['']);
+          this.isLoading = false;
         }
       },
-      (error) => {
+      (erro) => {
+        console.error(erro);
+        this.pageNotificationService.addErrorMessage(
+          'Não foi possível realizar o login.'
+        );
+        this.isLoading = false;
       }
     );
+
+    this.isLoading = true;
   }
 
   public limpar(): void {

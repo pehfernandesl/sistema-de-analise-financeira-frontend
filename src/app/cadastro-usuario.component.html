@@ -1,7 +1,7 @@
 <div class="ui-g ui-fluid login-template" *ngIf="true">
   <div class="ui-g-10 container-login">
     <div class="card card-w-title login-panel">
-      <form novalidate [formGroup]="cadastroForm">
+      <form [formGroup]="cadastroForm">
         <span class="logo"> </span>
         <h1 class="title p-b-34 p-t-27">Seja Bem-vindo(a)!</h1>
         <p>Faça o seu cadastro para acessar o sistema</p>
@@ -41,6 +41,7 @@
             (click)="limpar()"
             style="margin: 5px;"
           ></button>
+          <a [routerLink]="['']">Já possui uma conta? Acesse por aqui.</a>
         </div>
       </form>
     </div>
