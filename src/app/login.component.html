@@ -46,8 +46,14 @@
           <button
             pButton
             type="submit"
-            label="Login"
+            label="Entrar"
             (click)="login()"
+            style="margin: 5px;"
+          ></button>
+          <button
+            pButton
+            label="Cadastrar-se"
+            [routerLink]="['/']"
             style="margin: 5px;"
           ></button>
           <button
