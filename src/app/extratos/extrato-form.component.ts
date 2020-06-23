@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { CALENDAR_LOCALE } from '@components/crud/components/calendar/calendar-locale';
 import { ExtratoService } from './extrato.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { LocaleSettings } from 'primeng';
 import { PageNotificationService } from '@components/page-notification/page-notification.service';
 import { environment } from './../../environments/environment';
@@ -13,6 +14,7 @@ import { environment } from './../../environments/environment';
   styles: []
 })
 export class ExtratoFormComponent implements OnInit {
+  public isLoading = false;
   public calendarLocale: LocaleSettings = CALENDAR_LOCALE;
   public base64: string;
 
@@ -44,11 +46,19 @@ export class ExtratoFormComponent implements OnInit {
   public salvar(): void {
     this.extratoService
       .salvar({ ...this.extratoForm.value, arquivoBase64: this.base64 })
-      .subscribe((resposta) => {
-        this.pageNotificationService.addCreateMsg(
-          'Extrato foi salvo com sucesso!'
-        );
-      });
+      .subscribe(
+        (resposta) => {
+          this.pageNotificationService.addCreateMsg(
+            'Extrato foi salvo com sucesso!'
+          );
+          this.isLoading = false;
+          this.extratoForm.reset();
+        },
+        (erro: HttpErrorResponse) => {
+          this.pageNotificationService.addErrorMessage(erro.message);
+        }
+      );
+    this.isLoading = true;
   }
 
   public limparArquivo(arquivo): void {

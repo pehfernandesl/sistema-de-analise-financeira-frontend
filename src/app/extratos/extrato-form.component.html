@@ -5,6 +5,7 @@
         <div class="ui-g-12">
           <h1>Lançar Novo Extrato</h1>
         </div>
+        <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
         <div class="ui-g-2">
           <p-dropdown
             [options]="[
