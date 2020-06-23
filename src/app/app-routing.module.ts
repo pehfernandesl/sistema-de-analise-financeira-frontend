@@ -1,13 +1,19 @@
-import { DashboardComponent } from './dashboard.component';
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AuthGuard } from './auth.guard';
+import { CadastroUsuarioComponent } from './cadastro-usuario.component';
+import { DashboardComponent } from './dashboard.component';
 import { LoginComponent } from './login.component';
+import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'cadastro',
+    component: CadastroUsuarioComponent
   },
   {
     path: '',

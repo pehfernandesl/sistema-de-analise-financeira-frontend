@@ -1,0 +1,49 @@
+<div class="ui-g ui-fluid login-template" *ngIf="true">
+  <div class="ui-g-10 container-login">
+    <div class="card card-w-title login-panel">
+      <form novalidate [formGroup]="cadastroForm">
+        <span class="logo"> </span>
+        <h1 class="title p-b-34 p-t-27">Seja Bem-vindo(a)!</h1>
+        <p>Faça o seu cadastro para acessar o sistema</p>
+        <div class="ui-g-12">
+          <div class="ui-g-12 ui-md-12 ui-sm-12 input">
+            <span class="ui-float-label">
+              <label>Nome</label>
+              <input type="email" pInputText formControlName="nome" />
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-12 ui-sm-12 input">
+            <span class="ui-float-label">
+              <label>Email</label>
+              <input type="text" pInputText formControlName="email" />
+            </span>
+          </div>
+          <div class="ui-g-12 ui-md-12 ui-sm-12 input">
+            <span class="ui-float-label">
+              <label>Senha</label>
+              <input pPassword type="password" formControlName="senha" />
+            </span>
+          </div>
+        </div>
+        <div class="ui-g-12 login-btn">
+          <button
+            pButton
+            type="submit"
+            label="Cadastrar-se"
+            (click)="cadastrar()"
+            [disabled]="cadastroForm.invalid"
+            style="margin: 5px;"
+          ></button>
+          <button
+            pButton
+            type="submit"
+            label="Limpar"
+            (click)="limpar()"
+            style="margin: 5px;"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="ui-g-2"></div>
+</div>

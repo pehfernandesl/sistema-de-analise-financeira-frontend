@@ -28,6 +28,7 @@ import { LoginComponent } from './login.component';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { ExtratosModule } from './extratos/extratos.module';
+import { CadastroUsuarioComponent } from './cadastro-usuario.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { ExtratosModule } from './extratos/extratos.module';
     AppRightpanelComponent,
     AppInlineProfileComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    CadastroUsuarioComponent
   ],
   providers: [
     {
