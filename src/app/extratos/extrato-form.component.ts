@@ -50,4 +50,8 @@ export class ExtratoFormComponent implements OnInit {
         );
       });
   }
+
+  public limparArquivo(arquivo): void {
+    arquivo.clear();
+  }
 }
