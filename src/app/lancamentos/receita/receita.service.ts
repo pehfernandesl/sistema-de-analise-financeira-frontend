@@ -24,6 +24,6 @@ export class ReceitaService {
   }
 
   public delete(receita: Receita) {
-    return this.httpClient.delete(this.api);
+    return this.httpClient.delete(`${this.api}/${receita.id}`);
   }
 }
