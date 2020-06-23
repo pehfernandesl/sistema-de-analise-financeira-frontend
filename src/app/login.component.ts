@@ -2,7 +2,7 @@ import { LocalStorageService } from './shared/local-storage/local-storage.servic
 import { AuthService } from './shared/auth/auth.service';
 import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm = this.fb.group({
-    email: [''],
-    senha: ['']
+    email: ['', Validators.required,],
+    senha: ['', Validators.required]
   });
   constructor(
     private fb: FormBuilder,
@@ -32,12 +32,14 @@ export class LoginComponent implements OnInit {
           this.localStorageService.storeToken(resposta.token);
           this.localStorageService.storeActiveUserEmail(resposta.email);
           this.router.navigate(['']);
-          console.log('OK');
         }
       },
       (error) => {
-        console.log('NOK');
       }
     );
+  }
+
+  public limpar(): void {
+    this.loginForm.reset();
   }
 }

@@ -1,0 +1,47 @@
+<div class="ui-g ui-fluid">
+  <div class="ui-g-12">
+    <div class="card card-w-title">
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <div class="ui-g-8">
+            <h2>Relatório Geral</h2>
+            <p-card>
+              Total: <label>{{ relatorio?.total }}</label>
+            </p-card>
+            <p-card>
+                Total de Entrada: <label>{{ relatorio?.totalEntrada }}</label>
+            </p-card>
+            <p-card>
+              Total de Saídas: <label>{{ relatorio?.totalSaida }}</label>
+            </p-card>
+            <p-card>
+              Dia com maior movimentação geral: <label>{{ relatorio?.dataMaisMovimento  | date:'dd/MM/yyyy'}}</label>
+            </p-card>
+            <p-card>
+              Dia com maior movimentação positiva: <label>{{ relatorio?.dataMaisMovimentoPositivo  | date:'dd/MM/yyyy'}}</label>
+            </p-card>
+            <p-card>
+              Dia com maior movimentação negativa: <label>{{ relatorio?.dataMaisMovimentoNegativo | date:'dd/MM/yyyy' }}</label>
+            </p-card>
+          </div>
+
+          <div class="ui-g-12">
+            <h2>Relatório de transações</h2>
+            <safi-datatable
+              type="memory"
+              [value]="getRelatorio()?.operacoes"
+              disableDelete="false"
+              disableEdit="true"
+              disableView="true"
+            >
+              <p-column header="Tipo de Operação" field="tpOperacao"></p-column>
+              <p-column header="Valor" field="valor"></p-column>
+              <p-column header="%" field="percent"></p-column>
+            </safi-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

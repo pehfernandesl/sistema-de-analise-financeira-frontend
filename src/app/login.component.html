@@ -47,19 +47,21 @@
             pButton
             type="submit"
             label="Entrar"
+            [disabled]="loginForm.invalid"
             (click)="login()"
             style="margin: 5px;"
           ></button>
           <button
             pButton
             label="Cadastrar-se"
-            [routerLink]="['/']"
+            [routerLink]="['/cadastro']"
             style="margin: 5px;"
           ></button>
           <button
             pButton
             type="submit"
             label="Limpar"
+            (click)="limpar()"
             style="margin: 5px;"
           ></button>
         </div>

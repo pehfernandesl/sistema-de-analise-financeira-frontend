@@ -2,6 +2,7 @@ import { ExtratoFormComponent } from './extrato-form.component';
 import { ExtratoListaComponent } from './extrato-lista.component';
 import { RelatorioComponent } from './relatorio/relatorio.component';
 import { Routes } from '@angular/router';
+import { RelatorioListaComponent } from './relatorio/relatorio-lista.component';
 
 export const routes: Routes = [
   {
@@ -18,5 +19,10 @@ export const routes: Routes = [
     path: 'relatorios',
     component: RelatorioComponent,
     data: { breadcrumb: 'Relatórios' }
+  },
+  {
+    path: 'relatorios/show',
+    component: RelatorioListaComponent,
+    data: { breadcrumb: 'Relatório Mensal' }
   }
 ];
