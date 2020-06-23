@@ -7,6 +7,7 @@ import { LocaleSettings } from 'primeng';
 import { PageNotificationComponent } from '@components/page-notification/page-notification.component';
 import { PageNotificationService } from '@components/page-notification/page-notification.service';
 import { Router } from '@angular/router';
+import { SafiErrorHttpResponse } from './err/error-httpresponse';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -36,13 +37,22 @@ export class CadastroUsuarioComponent implements OnInit {
   public cadastrar(): void {
     this.http.post(this.api, this.cadastroForm.value).subscribe(
       (sucesso) => {
+        this.pageNotificationService.addSuccessMessage(
+          'Sua conta foi cadastrada com sucesso!'
+        );
         this.router.navigate(['']);
       },
-      (erro: HttpErrorResponse) => {
-        this.pageNotificationService.addErrorMessage(
-          'Erro ao cadastrar usuário',
-          erro.error
-        );
+      ({ error }: HttpErrorResponse) => {
+        console.log(error);
+
+        const errors = error.errors as Array<any>;
+
+        errors.forEach((err) => {
+          this.pageNotificationService.addErrorMessage(
+            err.defaultMessage,
+            err.field
+          );
+        });
       }
     );
   }

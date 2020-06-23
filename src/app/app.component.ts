@@ -99,35 +99,35 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
       this.bindRipple();
     });
     this.menuService.itens = [
-      { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] },
+      { label: 'Home', icon: 'home', routerLink: ['/'] },
       {
         label: 'Extratos Bancários',
-        icon: 'dashboard',
+        icon: 'account_balance',
         items: [
           {
             label: 'Extratos',
-            icon: 'dashboard',
+            icon: 'description',
             routerLink: ['/extratos']
           },
           {
             label: 'Relatório',
-            icon: 'dashboard',
+            icon: 'equalizer',
             routerLink: ['/extratos/relatorios']
           }
         ]
       },
       {
         label: 'Lançamentos',
-        icon: 'dashboard',
+        icon: 'attach_money',
         items: [
           {
             label: 'Despesas',
-            icon: 'dashboard',
+            icon: 'remove_circle_outline',
             routerLink: ['/lancamentos/despesas']
           },
           {
             label: 'Receitas',
-            icon: 'dashboard',
+            icon: 'add_circle_outline',
             routerLink: ['/lancamentos/receitas']
           }
         ]
