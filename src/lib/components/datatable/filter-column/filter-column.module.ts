@@ -18,13 +18,8 @@ import { FilterColumn } from './filter-column.component';
     ReactiveFormsModule,
     InputTextModule
   ],
-  declarations: [
-    FilterColumn
-  ],
-  exports: [
-    FilterColumn
-  ],
+  declarations: [FilterColumn],
+  exports: [FilterColumn],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class FilterColumnModule {
-}
+export class FilterColumnModule {}

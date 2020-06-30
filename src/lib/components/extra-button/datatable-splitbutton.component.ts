@@ -5,7 +5,6 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: 'datatable-splitbutton.component.html'
 })
 export class DatatableSplitbuttonComponent implements OnInit {
-
   /**
    * items property
    * @type {any[]}
@@ -45,6 +44,5 @@ export class DatatableSplitbuttonComponent implements OnInit {
    * ngOnInit method
    * @returns void
    */
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

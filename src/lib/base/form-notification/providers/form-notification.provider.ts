@@ -1,33 +1,32 @@
-import { ApplicationProblemType } from "../../error/types/application-problem.type";
-import { FormNotification } from "../types/form-notification.type";
+import { ApplicationProblemType } from '../../error/types/application-problem.type';
+import { FormNotification } from '../types/form-notification.type';
 
 /**
  * Class provider para definição básica de tratamento de erros de formulários
  * @class
  */
 export class FormNotificationProvider extends ApplicationProblemType {
-
-    /**
-     * Metodo construtor para validação de formulários
-     * @param {string} type
-     * @param {string} title
-     * @param {string} detail
-     * @param {Number} status
-     * @param {string} instance
-     * @param {Array<string>} stacktrace
-     * @param {ApplicationProblemType} cause
-     * @param {FormViolation} violations
-     */
-    constructor(
-        type: string | 'about:blank',
-        title: string,
-        detail?: string,
-        status?: Number,
-        instance?: string,
-        stacktrace?: Array<string>,
-        cause?: ApplicationProblemType,
-        public violations?: FormNotification[]) {
-        super(type, title, detail, status, instance, stacktrace, cause);
-    }
-
+  /**
+   * Metodo construtor para validação de formulários
+   * @param {string} type
+   * @param {string} title
+   * @param {string} detail
+   * @param {Number} status
+   * @param {string} instance
+   * @param {Array<string>} stacktrace
+   * @param {ApplicationProblemType} cause
+   * @param {FormViolation} violations
+   */
+  constructor(
+    type: string | 'about:blank',
+    title: string,
+    detail?: string,
+    status?: Number,
+    instance?: string,
+    stacktrace?: Array<string>,
+    cause?: ApplicationProblemType,
+    public violations?: FormNotification[]
+  ) {
+    super(type, title, detail, status, instance, stacktrace, cause);
+  }
 }

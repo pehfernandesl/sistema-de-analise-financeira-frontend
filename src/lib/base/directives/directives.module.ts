@@ -6,17 +6,14 @@ import { NgModule } from '@angular/core';
  * DIRECTIVES constant
  * @constant
  */
-const DIRECTIVES = [
-    OnlyNumbersDirective,
-    UnmaskDirective
-];
+const DIRECTIVES = [OnlyNumbersDirective, UnmaskDirective];
 
 /**
  * Expõe directivas para reuso em outras palicações
  * @module
  */
 @NgModule({
-    declarations: DIRECTIVES,
-    exports: DIRECTIVES
+  declarations: DIRECTIVES,
+  exports: DIRECTIVES
 })
 export class DirectivesModule {}

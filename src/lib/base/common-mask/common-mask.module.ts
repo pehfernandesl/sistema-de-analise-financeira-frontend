@@ -5,12 +5,9 @@ import { CommonMaskService } from './common-mask.service';
  * @class
  */
 @NgModule({
-    imports: [],
-    declarations: [],
-    providers: [
-        CommonMaskService
-    ],
-    exports: []
+  imports: [],
+  declarations: [],
+  providers: [CommonMaskService],
+  exports: []
 })
-export class CommonMaskModule {
-}
+export class CommonMaskModule {}

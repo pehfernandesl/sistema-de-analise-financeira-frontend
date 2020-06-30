@@ -5,16 +5,8 @@ import { FormNotificationBaseModule } from '../../base/form-notification/form-no
 import { FormNotificationComponent } from './form-notification.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormNotificationBaseModule
-  ],
-  declarations: [
-    FormNotificationComponent
-  ],
-  exports: [
-    FormNotificationComponent
-  ]
+  imports: [CommonModule, FormNotificationBaseModule],
+  declarations: [FormNotificationComponent],
+  exports: [FormNotificationComponent]
 })
-export class FormNotificationModule {
-}
+export class FormNotificationModule {}

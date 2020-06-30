@@ -31,7 +31,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class DatatableComponent
   implements AfterViewInit, AfterContentInit, OnInit {
-
   selectedRow: any;
 
   dataProvider: DataProvider;
@@ -110,13 +109,17 @@ export class DatatableComponent
 
   @ViewChild(DataTable, { static: true }) pDatatableComponent: DataTable;
 
-  @ContentChildren(DatatableButtonComponent) extraButtons: QueryList<DatatableButtonComponent>;
+  @ContentChildren(DatatableButtonComponent) extraButtons: QueryList<
+    DatatableButtonComponent
+  >;
 
   @ContentChildren(Column) columns: Column[];
 
   @Output() startedLoading: EventEmitter<void> = new EventEmitter<void>();
 
-  @Output() finishedLoading: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
+  @Output() finishedLoading: EventEmitter<HttpErrorResponse> = new EventEmitter<
+    HttpErrorResponse
+  >();
 
   @Output() onRowSelected: EventEmitter<any> = new EventEmitter<any>();
 
@@ -137,8 +140,7 @@ export class DatatableComponent
     private changeDetectorRef: ChangeDetectorRef,
     private dataProviderFactory: DataProviderFactory,
     private authorizationService: Authorization
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.dataProvider = this.dataProviderFactory.create(this.type, this);

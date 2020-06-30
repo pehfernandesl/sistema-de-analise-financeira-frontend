@@ -15,7 +15,6 @@ import { PrimeTemplate } from 'primeng';
   selector: 'p-column'
 })
 export class Column implements AfterContentInit {
-
   @Input() field: string;
 
   @Input() colId: string;

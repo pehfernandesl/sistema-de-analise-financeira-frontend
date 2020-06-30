@@ -5,7 +5,5 @@ import { Component, Input } from '@angular/core';
   templateUrl: './page-notification.component.html'
 })
 export class PageNotificationComponent {
-
   @Input() duration: number = 3000;
-
 }

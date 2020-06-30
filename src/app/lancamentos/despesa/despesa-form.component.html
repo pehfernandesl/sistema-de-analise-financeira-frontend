@@ -1,0 +1,49 @@
+<div class="ui-g ui-fluid">
+  <div class="card card-w-title">
+    <form [formGroup]="despesaForm">
+      <div class="ui-g-12">
+        <div class="ui-g-12">
+          <h1>Lançar Nova Despesa</h1>
+        </div>
+        <div class="ui-g-6">
+          <textarea
+            [rows]="1"
+            [cols]="30"
+            pInputTextarea
+            formControlName="descricao"
+            autoResize="autoResize"
+          ></textarea>
+          <label>Descrição</label>
+        </div>
+        <div class="ui-g-6">
+          <p-inputNumber
+            formControlName="valor"
+            mode="currency"
+            currency="BRL"
+            locale="pt-BR"
+          ></p-inputNumber>
+          <label>Valor</label>
+        </div>
+        <div class="ui-g-6">
+          <p-calendar
+            [locale]="calendarLocale"
+            dateFormat="dd/mm/yy"
+            formControlName="dataLancamento"
+          ></p-calendar>
+          <label>Data de Lançamento</label>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6">
+            <button
+              pButton
+              icon="ui-icon-add"
+              label="Salvar"
+              [disabled]="despesaForm.invalid"
+              (click)="salvar()"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

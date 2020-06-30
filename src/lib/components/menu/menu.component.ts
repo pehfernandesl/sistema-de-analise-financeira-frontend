@@ -7,6 +7,5 @@ import { MenusService } from './menu.service';
   templateUrl: './menu.component.html'
 })
 export class MenuComponent {
-  constructor(public menuService: MenusService) {
-  }
+  constructor(public menuService: MenusService) {}
 }

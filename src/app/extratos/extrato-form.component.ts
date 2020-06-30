@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { CALENDAR_LOCALE } from '@components/crud/components/calendar/calendar-locale';
 import { ExtratoService } from './extrato.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { LocaleSettings } from 'primeng';
 import { PageNotificationService } from '@components/page-notification/page-notification.service';
 import { environment } from './../../environments/environment';
@@ -13,6 +14,7 @@ import { environment } from './../../environments/environment';
   styles: []
 })
 export class ExtratoFormComponent implements OnInit {
+  public isLoading = false;
   public calendarLocale: LocaleSettings = CALENDAR_LOCALE;
   public base64: string;
 
@@ -20,7 +22,7 @@ export class ExtratoFormComponent implements OnInit {
     id: this.fb.group({
       tpBanco: [null, Validators.required],
       mesAno: [null, Validators.required]
-    }),
+    })
     // arquivoBase64: ['T0ZYSEVBREVSOjEwMA0KREFUQTpPRlhTR01MDQpWRVJTSU9OOjEwMg0KU0VDVVJJVFk6Tk9ORQ0KRU5DT0RJTkc6VVNBU0NJSQ0KQ0hBUlNFVDoxMjUyDQpDT01QUkVTU0lPTjpOT05FDQpPTERGSUxFVUlEOk5PTkUNCk5FV0ZJTEVVSUQ6Tk9ORQ0KDQo8T0ZYPg0KICAgIDxTSUdOT05NU0dTUlNWMT4NCiAgICAgICAgPFNPTlJTPg0KICAgICAgICAgICAgPFNUQVRVUz4NCiAgICAgICAgICAgICAgICA8Q09ERT4wDQogICAgICAgICAgICAgICAgPFNFVkVSSVRZPklORk8NCiAgICAgICAgICAgIDwvU1RBVFVTPg0KICAgICAgICAgICAgPERUU0VSVkVSPjIwMTkwMjI2MjIzMDIzWy0zOkdNVF0NCiAgICAgICAgICAgIDxMQU5HVUFHRT5FTkcNCiAgICAgICAgICAgIDxGST4NCiAgICAgICAgICAgICAgICA8T1JHPlNBTlRBTkRFUg0KICAgICAgICAgICAgICAgIDxGSUQ+U0FOVEFOREVSDQogICAgICAgICAgICA8L0ZJPg0KICAgICAgICA8L1NPTlJTPg0KICAgIDwvU0lHTk9OTVNHU1JTVjE+DQogICAgPEJBTktNU0dTUlNWMT4NCiAgICAgICAgPFNUTVRUUk5SUz4NCiAgICAgICAgICAgIDxUUk5VSUQ+MQ0KICAgICAgICAgICAgPFNUQVRVUz4NCiAgICAgICAgICAgICAgICA8Q09ERT4wDQogICAgICAgICAgICAgICAgPFNFVkVSSVRZPklORk8NCiAgICAgICAgICAgIDwvU1RBVFVTPg0KICAgICAgICAgICAgPFNUTVRSUz4NCiAgICAgICAgICAgICAgICA8Q1VSREVGPkJSTA0KICAgICAgICAgICAgICAgIDxCQU5LQUNDVEZST00+DQogICAgICAgICAgICAgICAgICAgIDxCQU5LSUQ+MDMzDQogICAgICAgICAgICAgICAgICAgIDxBQ0NUSUQ+MzMyODEzMDAzMzI5Nw0KICAgICAgICAgICAgICAgICAgICA8QUNDVFRZUEU+Q0hFQ0tJTkcNCiAgICAgICAgICAgICAgICA8L0JBTktBQ0NURlJPTT4NCiAgICAgICAgICAgICAgICA8QkFOS1RSQU5MSVNUPg0KICAgICAgICAgICAgICAgICAgICA8RFRTVEFSVD4yMDE5MDIyNjIyMzAyM1stMzpHTVRdDQogICAgICAgICAgICAgICAgICAgIDxEVEVORD4yMDE5MDIyNjIyMzAyM1stMzpHTVRdDQogICAgICAgICAgICAgICAgICAgIDxTVE1UVFJOPg0KICAgICAgICAgICAgICAgICAgICAgICAgPFRSTlRZUEU+T1RIRVINCiAgICAgICAgICAgICAgICAgICAgICAgIDxEVFBPU1RFRD4yMDE5MDEwMjAwMDAwMFstMzpHTVRdDQogICAgICAgICAgICAgICAgICAgICAgICA8VFJOQU1UPi04MSwwMA0KICAgICAgICAgICAgICAgICAgICAgICAgPEZJVElEPjAwMDIyNjAyDQogICAgICAgICAgICAgICAgICAgICAgICA8Q0hFQ0tOVU0+MDAwMjI2MDINCiAgICAgICAgICAgICAgICAgICAgICAgIDxQQVlFRUlEPjANCiAgICAgICAgICAgICAgICAgICAgICAgIDxNRU1PPlRBUklGQSBNRU5TQUxJREFERSBQQUNPVEUgU0VSVklDT1MgIERFWkVNQlJPIC8gMjAxOCAgICAgICAgIA0KICAgICAgICAgICAgICAgICAgICA8L1NUTVRUUk4+DQogICAgICAgICAgICAgICAgICAgIDxTVE1UVFJOPg0KICAgICAgICAgICAgICAgICAgICAgICAgPFRSTlRZUEU+T1RIRVINCiAgICAgICAgICAgICAgICAgICAgICAgIDxEVFBPU1RFRD4yMDE5MDEwMjAwMDAwMFstMzpHTVRdDQogICAgICAgICAgICAgICAgICAgICAgICA8VFJOQU1UPi0zLDg5DQogICAgICAgICAgICAgICAgICAgICAgICA8RklUSUQ+MDAwMzI2MDINCiAgICAgICAgICAgICAgICAgICAgICAgIDxDSEVDS05VTT4wMDAzMjYwMg0KICAgICAgICAgICAgICAgICAgICAgICAgPFBBWUVFSUQ+MA0KICAgICAgICAgICAgICAgICAgICAgICAgPE1FTU8+SU9GIElNUE9TVE8gT1BFUkFDT0VTIEZJTkFOQ0VJUkFTICBQRVJJT0RPOiAwMS8xMiBBIDMxLzEyLzE4DQogICAgICAgICAgICAgICAgICAgIDwvU1RNVFRSTj4NCiAgICAgICAgICAgICAgICA8L0JBTktUUkFOTElTVD4NCiAgICAgICAgICAgICAgICA8TEVER0VSQkFMPg0KICAgICAgICAgICAgICAgICAgICA8QkFMQU1UPi0xMTI1Myw3Nw0KICAgICAgICAgICAgICAgICAgICA8RFRBU09GPjIwMTkwMjI2MjIzMDIzWy0zOkdNVF0NCiAgICAgICAgICAgICAgICA8L0xFREdFUkJBTD4NCiAgICAgICAgICAgIDwvU1RNVFJTPg0KICAgICAgICA8L1NUTVRUUk5SUz4NCiAgICA8L0JBTktNU0dTUlNWMT4NCjwvT0ZYPg==', ]
   });
   constructor(
@@ -31,7 +33,10 @@ export class ExtratoFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public async aoSelecionarOFX(event: { originalEvent: any, currentFiles: any[] }): Promise<any> {
+  public async aoSelecionarOFX(event: {
+    originalEvent: any;
+    currentFiles: any[];
+  }): Promise<any> {
     const ofxFile = event.currentFiles[0] as File;
     const arr = await ofxFile.arrayBuffer();
     const base64 = btoa(new TextDecoder().decode(arr));
@@ -39,8 +44,24 @@ export class ExtratoFormComponent implements OnInit {
   }
 
   public salvar(): void {
-    this.extratoService.salvar({...this.extratoForm.value, arquivoBase64: this.base64}).subscribe(resposta =>{
-      console.log('Ok');
-    });
+    this.extratoService
+      .salvar({ ...this.extratoForm.value, arquivoBase64: this.base64 })
+      .subscribe(
+        (resposta) => {
+          this.pageNotificationService.addCreateMsg(
+            'Extrato foi salvo com sucesso!'
+          );
+          this.isLoading = false;
+          this.extratoForm.reset();
+        },
+        (erro: HttpErrorResponse) => {
+          this.pageNotificationService.addErrorMessage(erro.message);
+        }
+      );
+    this.isLoading = true;
+  }
+
+  public limparArquivo(arquivo): void {
+    arquivo.clear();
   }
 }

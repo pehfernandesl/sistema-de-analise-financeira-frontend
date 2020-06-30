@@ -1,11 +1,9 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'nValidationMessage',
-    templateUrl: './validation-message.component.html'
+  selector: 'nValidationMessage',
+  templateUrl: './validation-message.component.html'
 })
 export class ValidationMessageComponent {
-
-    @Input() control: any;
-
+  @Input() control: any;
 }

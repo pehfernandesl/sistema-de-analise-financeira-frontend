@@ -5,6 +5,7 @@
         <span class="logo">
           <!--<i class="fa ui-icon-landscape">logo</i>-->
         </span>
+        <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
         <h1 class="title p-b-34 p-t-27">Seja Bem-vindo(a)!</h1>
         <p>Acesse a sua conta</p>
         <div class="ui-g-12">
@@ -46,14 +47,22 @@
           <button
             pButton
             type="submit"
-            label="Login"
+            label="Entrar"
+            [disabled]="loginForm.invalid"
             (click)="login()"
+            style="margin: 5px;"
+          ></button>
+          <button
+            pButton
+            label="Cadastrar-se"
+            [routerLink]="['/cadastro']"
             style="margin: 5px;"
           ></button>
           <button
             pButton
             type="submit"
             label="Limpar"
+            (click)="limpar()"
             style="margin: 5px;"
           ></button>
         </div>

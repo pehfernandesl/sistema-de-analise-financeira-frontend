@@ -3,15 +3,15 @@
  * @interface
  */
 export interface User {
-    /**
-     * roles property
-     * @type {string[]}
-     */
-    roles: string[];
+  /**
+   * roles property
+   * @type {string[]}
+   */
+  roles: string[];
 
-    /**
-     * name property
-     * @type {string}
-     */
-    name: string;
+  /**
+   * name property
+   * @type {string}
+   */
+  name: string;
 }

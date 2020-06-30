@@ -6,18 +6,10 @@ import { SplitButtonModule } from 'primeng';
  * @class
  */
 @NgModule({
-  imports: [
-    SplitButtonModule
-  ],
-  declarations: [
-    DatatableSplitbuttonComponent
-  ],
+  imports: [SplitButtonModule],
+  declarations: [DatatableSplitbuttonComponent],
   providers: [],
-  exports: [
-    DatatableSplitbuttonComponent,
-    SplitButtonModule
-  ],
+  exports: [DatatableSplitbuttonComponent, SplitButtonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class DatatableSplitbuttonModule {
-}
+export class DatatableSplitbuttonModule {}

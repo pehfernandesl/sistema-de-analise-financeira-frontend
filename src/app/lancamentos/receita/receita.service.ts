@@ -1,8 +1,9 @@
-import { Receita } from './receita';
-import { Observable } from 'rxjs';
-import { environment } from './../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Receita } from './receita';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class ReceitaService {
 
   public create(receita: Receita): Observable<Receita> {
     return this.httpClient.post<Receita>(this.api, receita);
+  }
+
+  public delete(receita: Receita) {
+    return this.httpClient.delete(`${this.api}/${receita.id}`);
   }
 }

@@ -1,4 +1,10 @@
-import { Component, Input, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  TemplateRef
+} from '@angular/core';
 
 import { ErrorStackService } from '../../base/error/services/error-stack.service';
 import { NamedErrorType } from '../../base/error/types/named-error.type';
@@ -17,8 +23,7 @@ export class ErrorStackComponent implements OnInit, OnDestroy {
 
   private errorSubscription: Subscription;
 
-  constructor(private errorStack: ErrorStackService) {
-  }
+  constructor(private errorStack: ErrorStackService) {}
 
   ngOnInit() {
     this.errorSubscription = this.errorStack.errors.subscribe(

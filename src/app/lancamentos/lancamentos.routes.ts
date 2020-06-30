@@ -1,8 +1,8 @@
-import { Routes } from '@angular/router';
-import { DespesaListaComponent } from './despesa/despesa-lista.component';
-import { ReceitaListaComponent } from './receita/receita-lista.component';
-import { ReceitaFormComponent } from './receita/receita-form.component';
 import { DespesaFormComponent } from './despesa/despesa-form.component';
+import { DespesaListaComponent } from './despesa/despesa-lista.component';
+import { ReceitaFormComponent } from './receita/receita-form.component';
+import { ReceitaListaComponent } from './receita/receita-lista.component';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
@@ -18,11 +18,11 @@ export const routes: Routes = [
   {
     path: 'receitas/new',
     component: ReceitaFormComponent,
-    data: { breadcrumb: 'Nova Receita' }
+    data: { breadcrumb: 'Lançamentos/Nova Receita' }
   },
   {
     path: 'despesas/new',
     component: DespesaFormComponent,
-    data: { breadcrumb: 'Nova Despesa' }
+    data: { breadcrumb: 'Lançamentos/Nova Despesa' }
   }
 ];

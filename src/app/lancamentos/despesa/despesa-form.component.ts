@@ -1,58 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+
 import { CALENDAR_LOCALE } from '@components/crud/components/calendar/calendar-locale';
-import { LocaleSettings } from 'primeng';
 import { Despesa } from './despesa';
 import { DespesaService } from './despesa.service';
-import { Router } from '@angular/router';
+import { LocaleSettings } from 'primeng';
 import { PageNotificationService } from '@components/page-notification/page-notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'safi-despesa-form',
-  template: `
-    <div class="ui-g ui-fluid">
-      <form [formGroup]="despesaForm">
-        <div class="ui-g-12">
-          <div>
-            <h1>Lançar Nova Despesa</h1>
-          </div>
-          <div class="ui-g-12">
-            <span class="ui-float-label">
-              <input pInputText formControlName="descricao" />
-              <label>Descrição</label>
-            </span>
-          </div>
-          <div class="ui-g-12">
-            <label>Valor</label>
-            <p-inputNumber
-              formControlName="valor"
-              mode="currency"
-              currency="BRL"
-              locale="pt-BR"
-            ></p-inputNumber>
-          </div>
-          <div class="ui-g-12">
-            <span class="ui-float-label">
-              <p-calendar
-                [locale]="calendarLocale"
-                formControlName="dataLancamento"
-              ></p-calendar>
-              <label>Data de Lançamento</label>
-            </span>
-          </div>
-          <div class="ui-g-4">
-            <button
-              pButton
-              icon="ui-icon-add"
-              label="Salvar"
-              [disabled]="despesaForm.invalid"
-              (click)="salvar()"
-            ></button>
-          </div>
-        </div>
-      </form>
-    </div>
-  `,
+  templateUrl: './despesa-form.component.html',
   styles: [
     `
       span,

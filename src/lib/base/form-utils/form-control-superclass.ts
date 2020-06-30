@@ -1,8 +1,8 @@
-import { Type } from "@angular/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { DirectiveSuperclass } from "./directive-superclass";
+import { Type } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DirectiveSuperclass } from './directive-superclass';
 
-export function noop() { };
+export function noop() {}
 
 /**
  * Use in the `providers` of a component that implements `ControlValueAccessor` to reduce some boilerplate.
@@ -15,11 +15,11 @@ export function noop() { };
  * ```
  */
 export function provideValueAccessor(type: Type<any>) {
-    return {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: type,
-        multi: true,
-    };
+  return {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: type,
+    multi: true
+  };
 }
 
 /**
@@ -53,38 +53,38 @@ export function provideValueAccessor(type: Type<any>) {
  * ```
  */
 export abstract class FormControlSuperclass<T> extends DirectiveSuperclass
-    implements ControlValueAccessor {
-    /** Call this to emit a new value when it changes. */
-    emitOutgoingValue: (value: T) => void = noop;
+  implements ControlValueAccessor {
+  /** Call this to emit a new value when it changes. */
+  emitOutgoingValue: (value: T) => void = noop;
 
-    /** Call this to "commit" a change, traditionally done e.g. on blur. */
-    onTouched = noop;
+  /** Call this to "commit" a change, traditionally done e.g. on blur. */
+  onTouched = noop;
 
-    /** You can bind to this in your template as needed. */
-    isDisabled = false;
+  /** You can bind to this in your template as needed. */
+  isDisabled = false;
 
-    /** Implement this to handle a new value coming in from outside. */
-    abstract handleIncomingValue(value: T): void;
+  /** Implement this to handle a new value coming in from outside. */
+  abstract handleIncomingValue(value: T): void;
 
-    /** Called as angular propagates value changes to this `ControlValueAccessor`. You normally do not need to use it. */
-    writeValue(value: T) {
-        this.handleIncomingValue(value);
-        this.changeDetectorRef.markForCheck();
-    }
+  /** Called as angular propagates value changes to this `ControlValueAccessor`. You normally do not need to use it. */
+  writeValue(value: T) {
+    this.handleIncomingValue(value);
+    this.changeDetectorRef.markForCheck();
+  }
 
-    /** Called as angular sets up the binding to this `ControlValueAccessor`. You normally do not need to use it. */
-    registerOnChange(fn: (value: T) => void) {
-        this.emitOutgoingValue = fn;
-    }
+  /** Called as angular sets up the binding to this `ControlValueAccessor`. You normally do not need to use it. */
+  registerOnChange(fn: (value: T) => void) {
+    this.emitOutgoingValue = fn;
+  }
 
-    /** Called as angular sets up the binding to this `ControlValueAccessor`. You normally do not need to use it. */
-    registerOnTouched(fn: VoidFunction) {
-        this.onTouched = fn;
-    }
+  /** Called as angular sets up the binding to this `ControlValueAccessor`. You normally do not need to use it. */
+  registerOnTouched(fn: VoidFunction) {
+    this.onTouched = fn;
+  }
 
-    /** Called as angular propagates disabled changes to this `ControlValueAccessor`. You normally do not need to use it. */
-    setDisabledState(isDisabled: boolean) {
-        this.isDisabled = isDisabled;
-        this.changeDetectorRef.markForCheck();
-    }
+  /** Called as angular propagates disabled changes to this `ControlValueAccessor`. You normally do not need to use it. */
+  setDisabledState(isDisabled: boolean) {
+    this.isDisabled = isDisabled;
+    this.changeDetectorRef.markForCheck();
+  }
 }

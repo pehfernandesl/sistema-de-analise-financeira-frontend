@@ -20,5 +20,4 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   ],
   exports: [BlockUIModule, BlockUiComponent, ProgressSpinnerModule]
 })
-export class BlockUiModule {
-}
+export class BlockUiModule {}

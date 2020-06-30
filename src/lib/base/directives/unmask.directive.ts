@@ -7,55 +7,52 @@ import { NgControl } from '@angular/forms';
  * @class
  */
 @Directive({
-    selector: '[unmask]'
+  selector: '[unmask]'
 })
 export class UnmaskDirective implements OnInit, OnDestroy {
+  /**
+   * Propriedade a para realizar a formatação expressão regular
+   * @type {string} appUnmask
+   */
+  @Input() appUnmask: string;
 
-    /**
-     * Propriedade a para realizar a formatação expressão regular
-     * @type {string} appUnmask
-     */
-    @Input() appUnmask: string;
+  /**
+   * Cria canal de escuta para a diretiva
+   * @type {Subscription} subscriber
+   */
+  private subscriber;
 
-    /**
-     * Cria canal de escuta para a diretiva
-     * @type {Subscription} subscriber
-     */
-    private subscriber;
+  /**
+   * constructor method
+   * @param {ElementRef} elementRef
+   * @param {NgControl} model
+   * @constructor
+   */
+  constructor(private elementRef: ElementRef, private model: NgControl) {}
 
-    /**
-     * constructor method
-     * @param {ElementRef} elementRef
-     * @param {NgControl} model
-     * @constructor
-     */
-    constructor(private elementRef: ElementRef, private model: NgControl) { }
+  /**
+   * Metodo executado no carregamento da diretiva, executa verificação do valor e remove as mascaras baseado em um aexpressão regular
+   * @returns void
+   */
+  ngOnInit(): void {
+    this.subscriber = this.model.control.valueChanges.subscribe(() => {
+      const newValue = this.elementRef.nativeElement.value.replace(
+        new RegExp(this.appUnmask),
+        ''
+      );
+      this.model.control.setValue(newValue, {
+        emitEvent: false,
+        emitModelToViewChange: false,
+        emitViewToModelChange: false
+      });
+    });
+  }
 
-    /**
-     * Metodo executado no carregamento da diretiva, executa verificação do valor e remove as mascaras baseado em um aexpressão regular
-     * @returns void
-     */
-    ngOnInit(): void {
-        this.subscriber = this.model.control.valueChanges.subscribe(
-            () => {
-                const newValue = this.elementRef.nativeElement.value.replace(new RegExp(this.appUnmask), '');
-                this.model.control.setValue(
-                    newValue,
-                    {
-                        emitEvent: false,
-                        emitModelToViewChange: false,
-                        emitViewToModelChange: false
-                    }
-                );
-            }
-        );
-    }
-
-    /**
-     * ngOnDestroy method
-     * @returns void
-     */
-    ngOnDestroy() {
-        this.subscriber.unsubscribe();
-    }
+  /**
+   * ngOnDestroy method
+   * @returns void
+   */
+  ngOnDestroy() {
+    this.subscriber.unsubscribe();
+  }
 }

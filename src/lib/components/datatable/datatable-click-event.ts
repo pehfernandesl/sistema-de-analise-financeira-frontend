@@ -9,6 +9,5 @@ export class DatatableClickEvent {
    * @param {string} button
    * @param {any} selection
    */
-  constructor(public button: string, public selection: any) {
-  }
+  constructor(public button: string, public selection: any) {}
 }

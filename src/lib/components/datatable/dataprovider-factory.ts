@@ -23,14 +23,12 @@ export enum DataProviderType {
   providedIn: 'root'
 })
 export class DataProviderFactory {
-
   /**
    * constructor method
    * @constructor
    * @param {DatatableService} datatableService
    */
-  constructor(private datatableService: DatatableService) {
-  }
+  constructor(private datatableService: DatatableService) {}
 
   /**
    * create method
@@ -39,7 +37,10 @@ export class DataProviderFactory {
    * @public
    * @returns DataProvider
    */
-  public create(type: DataProviderType, component: DatatableComponent): DataProvider {
+  public create(
+    type: DataProviderType,
+    component: DatatableComponent
+  ): DataProvider {
     if (DataProviderType.Server === type) {
       return new ServerDataProvider(this.datatableService, component);
     }

@@ -9,44 +9,50 @@ import { ErrorProvider } from '../providers/error.provider';
  * @class
  */
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root'
 })
 export class HttpApplicationProblemErrorService implements ErrorProvider {
+  /**
+   * Metodo construtor responsável por injetar serviço NotificationProvider
+   * @param {NotificationProvider} notification
+   * @constructor
+   */
+  constructor(
+    private notification: NotificationProvider,
+    private ngZone: NgZone
+  ) {}
 
-    /**
-     * Metodo construtor responsável por injetar serviço NotificationProvider
-     * @param {NotificationProvider} notification
-     * @constructor
-     */
-    constructor(private notification: NotificationProvider, private ngZone: NgZone) { }
+  /**
+   * Metodo responsável pela identificação de erros
+   * @public
+   * @param {Error | HttpErrorResponse} error
+   * @returns Boolean
+   */
+  shouldHandle(error: Error | HttpErrorResponse): Boolean {
+    return (
+      error instanceof HttpErrorResponse &&
+      error.headers.get('Content-Type') === 'application/problem+json' &&
+      error.error
+    );
+  }
 
-    /**
-     * Metodo responsável pela identificação de erros
-     * @public 
-     * @param {Error | HttpErrorResponse} error
-     * @returns Boolean
-     */
-    shouldHandle(error: Error | HttpErrorResponse): Boolean {
-        return error instanceof HttpErrorResponse && 
-            error.headers.get('Content-Type') === 'application/problem+json' && 
-            error.error;
-    }
-
-    /**
-     * Metodo pela adição de erros
-     * @public 
-     * @param {HttpErrorResponse} error
-     * @returns void
-     */
-    handle(error: HttpErrorResponse): void {
-        this.ngZone.run(() => { 
-            this.notification.addErrorProblem(
-                new ApplicationProblemType(
-                    error.error.type,
-                    error.error.title,
-                    error.error.detail,
-                    error.error.status,
-                    error.error.instance));
-        });
-    }
+  /**
+   * Metodo pela adição de erros
+   * @public
+   * @param {HttpErrorResponse} error
+   * @returns void
+   */
+  handle(error: HttpErrorResponse): void {
+    this.ngZone.run(() => {
+      this.notification.addErrorProblem(
+        new ApplicationProblemType(
+          error.error.type,
+          error.error.title,
+          error.error.detail,
+          error.error.status,
+          error.error.instance
+        )
+      );
+    });
+  }
 }

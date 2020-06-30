@@ -3,9 +3,9 @@
  * @interface
  */
 export interface BlockUiStatus {
-    /**
-     * status property
-     * @type {boolean}
-     */
-    status: boolean;
+  /**
+   * status property
+   * @type {boolean}
+   */
+  status: boolean;
 }

@@ -8,7 +8,6 @@ import { DataProvider } from './dataprovider';
  * @class
  */
 export class ServerDataProvider implements DataProvider {
-
   /**
    * currentLazyLoadEvent property
    * @type {LazyLoadEvent}
@@ -27,8 +26,13 @@ export class ServerDataProvider implements DataProvider {
    * @param {DatatableService} datatableService
    * @param {DatatableComponent} component
    */
-  constructor(private datatableService: DatatableService, private component: DatatableComponent) {
-    this.component.pDatatableComponent.onLazyLoad.subscribe((event: LazyLoadEvent) => this.onLazyLoad(event));
+  constructor(
+    private datatableService: DatatableService,
+    private component: DatatableComponent
+  ) {
+    this.component.pDatatableComponent.onLazyLoad.subscribe(
+      (event: LazyLoadEvent) => this.onLazyLoad(event)
+    );
     this.component.pDatatableComponent.lazy = true;
   }
 
@@ -50,12 +54,14 @@ export class ServerDataProvider implements DataProvider {
   load(query?: any): void {
     query = this.retrieveAndSaveQuery(query);
     this.component.startedLoading.emit();
-    this.datatableService.search(
-      this.currentLazyLoadEvent,
-      this.component.url,
-      this.component.pDatatableComponent.rows,
-      this.component.orderInSort,
-      query)
+    this.datatableService
+      .search(
+        this.currentLazyLoadEvent,
+        this.component.url,
+        this.component.pDatatableComponent.rows,
+        this.component.orderInSort,
+        query
+      )
       .toPromise()
       .then(
         (response) => {
@@ -98,8 +104,10 @@ export class ServerDataProvider implements DataProvider {
   private treatLoadResponseWithPaginationParameters(data) {
     let contentIndex = this.component.paginationParameters.contentIndex;
     let totalIndex = this.component.paginationParameters.totalElementsIndex;
-    this.component.value = (data[contentIndex]) ? data[contentIndex] : data;
-    this.component.pDatatableComponent.totalRecords = (data[totalIndex]) ? data[totalIndex] : this.component.value.length;
+    this.component.value = data[contentIndex] ? data[contentIndex] : data;
+    this.component.pDatatableComponent.totalRecords = data[totalIndex]
+      ? data[totalIndex]
+      : this.component.value.length;
   }
 
   /**
@@ -110,7 +118,10 @@ export class ServerDataProvider implements DataProvider {
    */
   private treatLoadResponseWithoutPaginationParameters(response: any, data) {
     if (response.headers.has('x-total-count')) {
-      this.component.pDatatableComponent.totalRecords = parseInt(response.headers.get('x-total-count'), 10);
+      this.component.pDatatableComponent.totalRecords = parseInt(
+        response.headers.get('x-total-count'),
+        10
+      );
       this.component.value = data;
     } else {
       this.component.pDatatableComponent.totalRecords = data.totalElements;

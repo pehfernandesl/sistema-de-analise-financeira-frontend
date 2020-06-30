@@ -3,7 +3,6 @@
  * @class
  */
 export interface DatatablePaginationParameters {
-
   /**
    * Nome do índice no payload de retorno que contém a quantidade de registros totais da coleção.
    * Se for nulo, o componente irá considerar a quantidade de registros retornados como o total da coleção.

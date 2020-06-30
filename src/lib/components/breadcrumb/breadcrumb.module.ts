@@ -10,5 +10,4 @@ import { RouterModule } from '@angular/router';
   exports: [BreadcrumbComponent],
   providers: [BreadcrumbService]
 })
-export class BreadcrumbModule {
-}
+export class BreadcrumbModule {}

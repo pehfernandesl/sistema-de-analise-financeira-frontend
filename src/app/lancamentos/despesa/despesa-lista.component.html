@@ -3,25 +3,12 @@
     <div class="card card-w-title">
       <h1>Minhas Despesas</h1>
       <div class="ui-g">
-        <div class="ui-g-12 ui-md-12 ui-fluid">
-          <span class="md-inputfield" style="margin-top: 5px;">
-            <input
-              pInputText
-              type="text"
-              class="ui-inputtext"
-              name="descricao"
-            />
-            <label>Descrição da Despesa</label>
-          </span>
-        </div>
+        <div class="ui-g-12 ui-md-12 ui-fluid"></div>
         <div class="ui-g-12">
-          <div class="ui-g-5">
-            <button pButton label="Pesquisar" icon="ui-icon-search"></button>
-          </div>
           <div class="ui-g-5">
             <button
               pButton
-              label="Cadastrar"
+              label="Nova Despesa"
               [routerLink]="['/despesas/new']"
               icon="ui-icon-add"
             ></button>
@@ -32,6 +19,7 @@
             disableDelete="false"
             disableEdit="true"
             disableView="true"
+            (buttonClick)="onDatabaseButtonClick($event)"
           >
             <p-column header="#" field="id"></p-column>
             <p-column header="Descrição" field="descricao"></p-column>
@@ -41,6 +29,12 @@
                 {{ data | date: 'dd/MM/yyyy' }}
               </ng-template>
             </p-column>
+            <safi-datatable-button
+              name="foobar"
+              icon="block"
+              tooltip="Foobar"
+              class="ui-button-info"
+            ></safi-datatable-button>
           </safi-datatable>
         </div>
       </div>

@@ -6,6 +6,8 @@ export class AppPage {
   }
 
   getTitleText(): Promise<string> {
-    return element(by.css('safi-root .content span')).getText() as Promise<string>;
+    return element(by.css('safi-root .content span')).getText() as Promise<
+      string
+    >;
   }
 }

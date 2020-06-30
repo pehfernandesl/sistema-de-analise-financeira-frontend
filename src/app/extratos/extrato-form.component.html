@@ -1,33 +1,53 @@
-
-      {{ extratoForm.value | json }}
-    <div class="ui-g ui-fluid">
-      <form [formGroup]="extratoForm">
+<div class="ui-g ui-fluid">
+  <div class="card card-w-title">
+    <form [formGroup]="extratoForm">
+      <div class="ui-g-12" formGroupName="id">
         <div class="ui-g-12">
-          <div>
-            <h1>Lançar Novo Extrato</h1>
+          <h1>Lançar Novo Extrato</h1>
+        </div>
+        <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
+        <div class="ui-g-2">
+          <p-dropdown
+            [options]="[
+              { label: 'Selecione', value: null },
+              { label: 'Santander', value: '33' },
+              { label: 'Caixa', value: '104' }
+            ]"
+            formControlName="tpBanco"
+          >
+          </p-dropdown>
+          <label>Banco</label>
+        </div>
+        <div class="ui-g-2">
+          <p-calendar
+            [locale]="calendarLocale"
+            view="month"
+            dateFormat="M/yy"
+            formControlName="mesAno"
+            [yearNavigator]="true"
+            yearRange="1900:2020"
+          ></p-calendar>
+          <label>Mês do Extrato</label>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-6">
+            <p-fileUpload
+              #arquivo
+              (onSelect)="aoSelecionarOFX($event)"
+              chooseLabel="Adicionar Arquivo OFX"
+              cancelLabel="Remover Arquivo"
+              mode="basic"
+              customUpload="false"
+              fileLimit="1"
+              showUploadButton="false"
+            ></p-fileUpload>
           </div>
-          <div formGroupName="id">
-            <div class="ui-g-12">
-              <span class="ui-float-label">
-                <input pInputNumber formControlName="tpBanco" />
-                <label>Banco</label>
-              </span>
-            </div>
-            <div class="ui-g-12">
-              <span class="ui-float-label">
-                <p-calendar
-                  [locale]="calendarLocale"
-                  formControlName="mesAno"
-                ></p-calendar>
-                <label>Data de Lançamento</label>
-              </span>
-            </div>
-          </div>
-          <div class="ui-g-12">
-            <span class="ui-float-label">
-              <p-fileUpload (onSelect)="aoSelecionarOFX($event)" chooseLabel="Adicionar Arquivo OFX" mode="basic" customUpload="false" showUploadButton="false" showCancelButton="false"></p-fileUpload>
-              <!-- <input pInputText formControlName="arquivoBase64" /> -->
-            </span>
+          <div class="ui-g-6">
+            <button
+              pButton
+              (click)="limparArquivo(arquivo)"
+              icon="ui-icon-minus"
+            ></button>
           </div>
           <div class="ui-g-4">
             <button
@@ -39,5 +59,7 @@
             ></button>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
+  </div>
+</div>

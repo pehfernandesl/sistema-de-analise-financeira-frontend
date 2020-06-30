@@ -1,8 +1,7 @@
 <div
   class="layout-wrapper"
   [ngClass]="{
-    'layout-compact': layoutCompact,
-    gradient: !authService.isAuthenticated()
+    'layout-compact': layoutCompact
   }"
   (click)="onLayoutClick()"
 >
@@ -36,9 +35,7 @@
       <breadcrumb *ngIf="authService.isAuthenticated()"></breadcrumb>
 
       <div class="layout-content">
-        <safi-page-notification
-          *ngIf="authService.isAuthenticated()"
-        ></safi-page-notification>
+        <safi-page-notification></safi-page-notification>
 
         <router-outlet></router-outlet>
 

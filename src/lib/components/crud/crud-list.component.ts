@@ -24,7 +24,6 @@ import { ConfirmationService } from 'primeng/api';
   templateUrl: './crud-list.component.html'
 })
 export class CrudListComponent implements OnInit, AfterContentInit {
-
   @Input() form: FormGroup;
 
   @Input() action: string = 'findAll';
@@ -47,8 +46,7 @@ export class CrudListComponent implements OnInit, AfterContentInit {
     private confirmationService: ConfirmationService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     if (this.service) {
@@ -61,13 +59,17 @@ export class CrudListComponent implements OnInit, AfterContentInit {
       switch (event.button) {
         case 'edit':
         case 'view':
-          this.router.navigate([`../${event.button}`, event.selection.id], { relativeTo: this.route });
+          this.router.navigate([`../${event.button}`, event.selection.id], {
+            relativeTo: this.route
+          });
           break;
         case 'delete':
           this.confirmationService.confirm({
             message: 'Você tem certeza que deseja excluir o registro?',
-            accept: () => this.crudService.delete(event.selection.id)
-              .subscribe(() => this.datatable.filter())
+            accept: () =>
+              this.crudService
+                .delete(event.selection.id)
+                .subscribe(() => this.datatable.filter())
           });
           break;
       }
@@ -79,11 +81,13 @@ export class CrudListComponent implements OnInit, AfterContentInit {
       this.find.emit(this.form.value);
     } else {
       this.datatable.filterParams = {};
-      Object.keys(this.form.value).forEach(element => {
+      Object.keys(this.form.value).forEach((element) => {
         let value = this.form.value[element];
         if (value) {
           this.datatable.filterParams[element] =
-            value instanceof Date ? JSON.stringify(value).replace(/"/g, '') : value;
+            value instanceof Date
+              ? JSON.stringify(value).replace(/"/g, '')
+              : value;
         }
       });
       this.datatable.filter();
@@ -91,11 +95,11 @@ export class CrudListComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    const datatableNgAfterContentInit = this.datatable.pDatatableComponent.ngAfterContentInit;
+    const datatableNgAfterContentInit = this.datatable.pDatatableComponent
+      .ngAfterContentInit;
     this.datatable.pDatatableComponent.ngAfterContentInit = () => {
       this.datatable.pDatatableComponent.columns = this.columns.toArray();
       datatableNgAfterContentInit.call(this.datatable.pDatatableComponent);
     };
   }
-
 }

@@ -6,20 +6,18 @@ import { ApplicationProblemType } from '../types/application-problem.type';
  * @class
  */
 export abstract class NotificationProvider {
+  /**
+   * Metodo para adicionar menssagem de erro
+   * @param {string} message
+   * @param {string} title
+   * @returns void
+   */
+  abstract addErrorMessage(message: string, title?: string): void;
 
-    /**
-     * Metodo para adicionar menssagem de erro
-     * @param {string} message
-     * @param {string} title
-     * @returns void
-     */
-    abstract addErrorMessage(message: string, title?: string): void;
-
-    /**
-     * Metodo para adição de erros
-     * @param {ApplicationProblemType} problem
-     * @returns void
-     */
-    abstract addErrorProblem(problem: ApplicationProblemType): void;
-
+  /**
+   * Metodo para adição de erros
+   * @param {ApplicationProblemType} problem
+   * @returns void
+   */
+  abstract addErrorProblem(problem: ApplicationProblemType): void;
 }

@@ -1,8 +1,10 @@
-import { LocalStorageService } from './shared/local-storage/local-storage.service';
-import { AuthService } from './shared/auth/auth.service';
-import { LoginService } from './login.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+
+import { AuthService } from './shared/auth/auth.service';
+import { LocalStorageService } from './shared/local-storage/local-storage.service';
+import { LoginService } from './login.service';
+import { PageNotificationService } from '@components/page-notification/page-notification.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,15 +13,18 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class LoginComponent implements OnInit {
+  isLoading = false;
+
   loginForm = this.fb.group({
-    email: [''],
-    senha: ['']
+    email: ['', Validators.required],
+    senha: ['', Validators.required]
   });
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
     private authService: AuthService,
     private localStorageService: LocalStorageService,
+    private pageNotificationService: PageNotificationService,
     private router: Router
   ) {}
 
@@ -28,16 +33,26 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.loginForm.value).subscribe(
       (resposta) => {
-        if (resposta.token){
+        if (resposta.token) {
           this.localStorageService.storeToken(resposta.token);
           this.localStorageService.storeActiveUserEmail(resposta.email);
           this.router.navigate(['']);
-          console.log('OK');
+          this.isLoading = false;
         }
       },
-      (error) => {
-        console.log('NOK');
+      (erro) => {
+        console.error(erro);
+        this.pageNotificationService.addErrorMessage(
+          'Não foi possível realizar o login.'
+        );
+        this.isLoading = false;
       }
     );
+
+    this.isLoading = true;
+  }
+
+  public limpar(): void {
+    this.loginForm.reset();
   }
 }

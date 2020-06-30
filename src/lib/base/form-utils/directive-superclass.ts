@@ -1,11 +1,7 @@
-import {
-    ChangeDetectorRef,
-    Injector,
-    SimpleChanges,
-} from "@angular/core";
-import { Observable, Subject } from "rxjs";
-import { filter, map, startWith } from "rxjs/operators";
-import { InjectableSuperclass } from "./injectable-superclass";
+import { ChangeDetectorRef, Injector, SimpleChanges } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { filter, map, startWith } from 'rxjs/operators';
+import { InjectableSuperclass } from './injectable-superclass';
 
 /**
  * Extend this when creating a directive (including a component, which is a kind of directive) to gain access to the helpers demonstrated below. **Warning:** You _must_ include a constructor in your subclass.
@@ -45,43 +41,42 @@ import { InjectableSuperclass } from "./injectable-superclass";
  * ```
  */
 export abstract class DirectiveSuperclass extends InjectableSuperclass {
+  /**
+   *  Emits the set of `@Input()` property names that change during each call to `ngOnChanges()`.
+   */
+  inputChanges$ = new Subject<any>();
 
-    /**
-     *  Emits the set of `@Input()` property names that change during each call to `ngOnChanges()`.
-     */
-    inputChanges$ = new Subject<any>();
+  protected changeDetectorRef: ChangeDetectorRef;
 
-    protected changeDetectorRef: ChangeDetectorRef;
+  constructor(injector: Injector) {
+    super();
+    this.changeDetectorRef = injector.get(ChangeDetectorRef);
+  }
 
-    constructor(injector: Injector) {
-        super();
-        this.changeDetectorRef = injector.get(ChangeDetectorRef);
-    }
+  ngOnChanges(changes: SimpleChanges) {
+    this.inputChanges$.next(
+      new Set(Object.getOwnPropertyNames(changes) as Array<keyof this>)
+    );
+  }
 
-    ngOnChanges(changes: SimpleChanges) {
-        this.inputChanges$.next(
-            new Set(Object.getOwnPropertyNames(changes) as Array<keyof this>),
-        );
-    }
+  /**
+   * @return an observable of the values for one of this directive's `@Input()` properties
+   */
+  getInput$<K extends keyof this>(key: K): Observable<this[K]> {
+    return this.inputChanges$.pipe(
+      filter((keys) => keys.has(key)),
+      startWith(undefined),
+      map(() => this[key])
+    );
+  }
 
-    /**
-     * @return an observable of the values for one of this directive's `@Input()` properties
-     */
-    getInput$<K extends keyof this>(key: K): Observable<this[K]> {
-        return this.inputChanges$.pipe(
-            filter((keys) => keys.has(key)),
-            startWith(undefined),
-            map(() => this[key]),
-        );
-    }
-
-    /**
-     * Binds an observable to one of this directive's instance variables. When the observable emits the instance variable will be updated, and change detection will be triggered to propagate any changes. Use this an an alternative to repeating `| async` multiple times in your template.
-     */
-    bindToInstance<K extends keyof this>(key: K, value$: Observable<this[K]>) {
-        this.subscribeTo(value$, (value) => {
-            this[key] = value;
-            this.changeDetectorRef.markForCheck();
-        });
-    }
+  /**
+   * Binds an observable to one of this directive's instance variables. When the observable emits the instance variable will be updated, and change detection will be triggered to propagate any changes. Use this an an alternative to repeating `| async` multiple times in your template.
+   */
+  bindToInstance<K extends keyof this>(key: K, value$: Observable<this[K]>) {
+    this.subscribeTo(value$, (value) => {
+      this[key] = value;
+      this.changeDetectorRef.markForCheck();
+    });
+  }
 }

@@ -1,6 +1,12 @@
 /* tslint:disable: component-selector */
 import { Component, Input } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 import { MenuItem } from 'primeng';
 import { MenusService } from './menu.service';
 
@@ -9,27 +15,44 @@ import { MenusService } from './menu.service';
   templateUrl: './submenu.component.html',
   animations: [
     trigger('children', [
-      state('hiddenAnimated', style({
-        height: '0px'
-      })),
-      state('visibleAnimated', style({
-        height: '*'
-      })),
-      state('visible', style({
-        height: '*',
-        'z-index': 100
-      })),
-      state('hidden', style({
-        height: '0px',
-        'z-index': '*'
-      })),
-      transition('visibleAnimated => hiddenAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
-      transition('hiddenAnimated => visibleAnimated', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
+      state(
+        'hiddenAnimated',
+        style({
+          height: '0px'
+        })
+      ),
+      state(
+        'visibleAnimated',
+        style({
+          height: '*'
+        })
+      ),
+      state(
+        'visible',
+        style({
+          height: '*',
+          'z-index': 100
+        })
+      ),
+      state(
+        'hidden',
+        style({
+          height: '0px',
+          'z-index': '*'
+        })
+      ),
+      transition(
+        'visibleAnimated => hiddenAnimated',
+        animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')
+      ),
+      transition(
+        'hiddenAnimated => visibleAnimated',
+        animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')
+      )
     ])
   ]
 })
 export class SubMenuComponent {
-
   @Input() item: MenuItem;
 
   @Input() root: boolean;
@@ -42,8 +65,7 @@ export class SubMenuComponent {
 
   activeIndex: number;
 
-  constructor(public menuService: MenusService) {
-  }
+  constructor(public menuService: MenusService) {}
 
   /**
    * Alterar o menu root entre aberto e fechado
@@ -59,7 +81,7 @@ export class SubMenuComponent {
    * @param index
    */
   private activeMenuByIndex(index: number) {
-    this.activeIndex = (this.activeIndex === index) ? null : index;
+    this.activeIndex = this.activeIndex === index ? null : index;
     return this.activeIndex;
   }
 
@@ -69,7 +91,7 @@ export class SubMenuComponent {
    */
   private execCommand(event: Event, item: MenuItem) {
     if (item.command) {
-      item.command({ 'originalEvent': event, 'item': item });
+      item.command({ originalEvent: event, item: item });
       return true;
     }
     return false;
@@ -98,7 +120,6 @@ export class SubMenuComponent {
   }
 
   itemClick(event: Event, item: MenuItem, index: number) {
-
     this.rootMenuToggle();
 
     if (item.disabled) {
@@ -119,7 +140,11 @@ export class SubMenuComponent {
   }
 
   onMouseEnter(index: number) {
-    if (this.root && this.menuService.menuHoverActive && (this.menuService.isHorizontal() || this.menuService.isSlim())) {
+    if (
+      this.root &&
+      this.menuService.menuHoverActive &&
+      (this.menuService.isHorizontal() || this.menuService.isSlim())
+    ) {
       this.activeIndex = index;
     }
   }
@@ -135,7 +160,10 @@ export class SubMenuComponent {
   set reset(val: boolean) {
     this._reset = val;
 
-    if (this._reset && (this.menuService.isHorizontal() || this.menuService.isSlim())) {
+    if (
+      this._reset &&
+      (this.menuService.isHorizontal() || this.menuService.isSlim())
+    ) {
       this.activeIndex = null;
     }
   }

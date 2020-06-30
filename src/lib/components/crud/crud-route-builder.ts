@@ -2,7 +2,12 @@ import { Route } from '@angular/router';
 
 import { CrudResolveGuard } from './crud-resolve.guard';
 
-export function crudRouteBuilder(route: string, parent: any, list: any, form: any): Route {
+export function crudRouteBuilder(
+  route: string,
+  parent: any,
+  list: any,
+  form: any
+): Route {
   return {
     path: route,
     component: parent,
@@ -28,6 +33,4 @@ export function crudRouteBuilder(route: string, parent: any, list: any, form: an
       }
     ]
   };
-
-
 }
